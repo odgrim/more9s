@@ -1,0 +1,15 @@
+{
+  "name": "more9s",
+  "description": "The more9s plugin: values and standards for agentic development.",
+  "owner": {
+    "name": "Brian Torres"
+  },
+  "plugins": [
+    {
+      "name": "more9s",
+      "source": "./more9s",
+      "description": "Values and standards for agentic development, as leaf skills an agent reads when a task triggers them. /make-more9s indexes them and says how they rank.",
+      "category": "development"
+    }
+  ]
+}
