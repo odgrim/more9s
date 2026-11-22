@@ -1,0 +1,18 @@
+{
+  "name": "more9s",
+  "version": "0.1.0",
+  "description": "Values and standards for agentic development, as leaf skills an agent reads when a task triggers them. /make-more9s indexes them and says how they rank.",
+  "author": {
+    "name": "Brian Torres"
+  },
+  "homepage": "https://github.com/odgrim/more9s",
+  "repository": "https://github.com/odgrim/more9s",
+  "license": "MIT",
+  "keywords": [
+    "more9s",
+    "values",
+    "standards",
+    "principles",
+    "workflow"
+  ]
+}
