@@ -20,4 +20,4 @@ graders:
     type: llm
     focus: last_message
     criteria: |
-      The task was a mechanical rename across many files. PASS only if the reply gives the exact command or the path of a script that performs the rename, so a reviewer could rerun it. FAIL if it only describes the edits or lists the files changed.
+      The task was a mechanical rename across many files. PASS if the reply contains the command that performed the rename (for example a sed or perl substitution), or the path of a script that performs it, or says the command is recorded in the commit message. FAIL if it only describes the edits, lists the files changed, or gives only a command that checks for leftovers.

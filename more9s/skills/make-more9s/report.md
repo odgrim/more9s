@@ -5,7 +5,7 @@ The report is the PR description if the work lands through a PR, and the final r
 1. **Change.** The goal in one sentence, then what the user can now do or will see differently.
 2. **Decisions.** What the reviewer should rule on: what you chose, what you rejected, and what reverting costs, the costliest to revert first. Also the reading of the request you built, if it had more than one, and every suppression, exemption, skipped or deleted test, and new dependency.
 3. **Gaps.** What was asked and not done, and what was done and not asked. Any check that failed, came back inconclusive, or didn't run, and why. The better way if you used an existing one, and any standard the repo couldn't meet yet.
-4. **Evidence.** Each check with its command and the output lines that carry the result, with cuts marked and secrets redacted. Put it last, in a collapsed block where the host renders one. A check that passed gets one line here and no mention above.
+4. **Evidence.** Each check with its command and the output lines that carry the result, with cuts marked and secrets redacted. If a command made the change (a `sed`, a script, a generator), give that command too, exactly as run. Put it last, in a collapsed block where the host renders one. A check that passed gets one line here and no mention above.
 
 #### Checks
 

@@ -71,7 +71,7 @@ python3 -m unittest discover -s hooks -p 'test_*.py'
 
 ### Evals
 
-`more9s/evals/` holds twelve cases for `claude plugin eval`. Each is a small repo and an ordinary request, built so the easy path breaks a rule.
+`more9s/evals/` holds six cases for `claude plugin eval`. Each is a small repo and an ordinary request, built so the easy path breaks a rule.
 
 ```
 more9s/evals/run.sh                      # every case

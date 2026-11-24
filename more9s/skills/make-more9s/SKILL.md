@@ -24,6 +24,8 @@ Before the first edit, state the goal in one sentence, the smallest change that 
 - **One module, one PR.** Write the report once, at the end.
 - **Larger, or an attempt has failed.** Keep a draft report at `.more9s/<branch>.md`, as `write-state-down` says.
 
+Commit the work. Running this skill is the human asking for commits, so "they didn't ask for a commit" isn't a reason to leave work uncommitted. Every task that changes a file, at any size and however urgent, ends with the work committed on a branch the session created. Never commit to the default branch. Don't push unless a PR was asked for or the repo's flow uses them.
+
 Say no when no is what you think. Don't default to agreeing.
 
 ## Ask-first actions
@@ -44,7 +46,7 @@ The report is the PR description if the work lands through a PR, and the final r
 1. **Change.** The goal, then what the user can now do or will see differently.
 2. **Decisions.** What the reviewer should rule on, the costliest to revert first. Every suppression, exemption, skipped test, and new dependency.
 3. **Gaps.** Asked and not done, done and not asked, and any check that failed or didn't run.
-4. **Evidence.** Each check's command and the output lines that carry its result.
+4. **Evidence.** Each check's command and the output lines that carry its result. The command behind any change a command made.
 
 Each leaf ends in a Check. Run the ones a command can answer. `report.md`, beside this file, has the full form of each part and how to record checks. Read it before you write a report longer than a few lines.
 
@@ -78,7 +80,7 @@ When two in one tier disagree, the one that names the other says which wins. If 
 - **Patterns Spread.** About to copy existing code, or the repo does one thing two ways. Find which way is current, from intent and not recency, before you copy.
 - **Do Not Copy Workarounds.** You find or are about to write code that makes up for a fault elsewhere. Fix the fault where it is.
 - **Encode Rules in Tooling.** Correcting a mistake or adding a convention. Enforce it with structure, a lint, or a test before prose, and watch the check fail on a real instance.
-- **Script the Repeatable.** A bulk edit, a migration, a check run twice. Write the script and land the change with the exact command that produced it.
+- **Script the Repeatable.** A bulk edit, a migration, a check run twice. Write the script, even a one-line `sed`, and put the exact command in the commit body and the report's evidence.
 
 **Debugging and proof**
 
@@ -91,7 +93,7 @@ When two in one tier disagree, the one that names the other says which wins. If 
 
 **Autonomy and the session**
 
-- **The PR Is the Guard.** Tempted to ask "should I?" about how to do the work. Decide, do it, and list the decision for the reviewer. Commit each unit on a branch of its own, never on the default branch, and don't push unless a PR was asked for or the repo's flow uses them.
+- **The PR Is the Guard.** Tempted to ask "should I?" about how to do the work. Decide, do it, and list the decision for the reviewer. Commit each unit as Every task says.
 - **Ask-First Actions Wait for the Human.** About to take one, or to make the first push in a repo. Wait, and keep working on everything else.
 - **Guard the Context Window.** A command, file, or search would return more than the decision needs. Filter at the source, and give broad reading to a subagent.
 - **Write State Down.** The work may outlast the session, or a compaction has happened. Keep state in commits and the draft report, written as it happens.

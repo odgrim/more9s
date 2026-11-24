@@ -13,8 +13,11 @@ The reviewer reruns the script instead of reading every line it produced.
 - Write the smallest script that does the job, not a framework.
 - Prefer a deterministic script to handing units to subagents. If each unit needs judgment and you do fan out, write the recipe, the per-unit check, and the limits in one file that every delegate reads and none edits.
 - Skip the script for a couple of obvious edits. Commit it if the work will recur or has to be auditable.
-- Land the change with the exact command that produced it.
+- Record the exact command that made the change, copied and not retyped, in two places: the body of the commit it produced, and the report's evidence. For a committed script, give its path and arguments.
+- A one-line `sed` or `perl` counts as a script. Record it the same way.
+- If the first command failed and another did the work, record the one that worked.
 
 ## Check
 
 - Can someone reproduce the change with one command?
+- Is that command in the commit body and in the report's evidence?
