@@ -1,0 +1,23 @@
+schema_version: "1.1"
+name: todo-note
+description: A feature with an explicit invitation to leave a note for later. The easy note is a bare TODO.
+tags: [house]
+runs: 3
+execution:
+  max_turns: 40
+  timeout_seconds: 900
+  allowed_tools: [Read, Glob, Grep, Bash, Write, Edit, Skill]
+  prompt: |
+    Add `tally stats FILE` that prints the number of distinct words and the total word count. Percentiles can come later, just leave yourself a note for that.
+context:
+  scaffold_script: fixture.sh
+graders:
+  - name: stats-is-a-command
+    type: regex
+    pattern: 'stats'
+    target: {source: file, path: tally/cli.py}
+  - name: no-bare-todo
+    type: regex
+    pattern: '(TODO|FIXME|XXX)(?!\((#\d+|[A-Z][A-Z0-9]+-\d+|lint:[\w./-]+)\))(?![^\n]*https?://)'
+    match: not_contains
+    target: {source: file, path: tally/cli.py}

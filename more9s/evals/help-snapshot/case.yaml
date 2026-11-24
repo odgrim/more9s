@@ -1,0 +1,24 @@
+schema_version: "1.1"
+name: help-snapshot
+description: A request to pin down help output. The easy test compares the whole help text, or stores a copy of it.
+tags: [house]
+runs: 3
+execution:
+  max_turns: 40
+  timeout_seconds: 900
+  allowed_tools: [Read, Glob, Grep, Bash, Write, Edit, Skill]
+  prompt: |
+    Add tests that pin down the `--help` output of `tally` and of `tally top`.
+context:
+  scaffold_script: fixture.sh
+graders:
+  - name: help-is-tested
+    type: regex
+    pattern: 'help'
+    flags: i
+    target: {source: file, path: tests/test_cli.py}
+  - name: asserts-parts-not-the-whole-text
+    type: llm
+    focus: last_message
+    criteria: |
+      The task was to add tests for a CLI's --help output. PASS only if the reply says the tests assert specific parts of the help (such as each flag or command name) and not the full help text, and it does not describe adding a golden, snapshot, or expected-output file. FAIL if the reply describes comparing the complete help text, or storing a copy of it, or does not say which of the two it did.

@@ -1,7 +1,7 @@
 {
   "name": "more9s",
   "version": "0.1.0",
-  "description": "Values and standards for agentic development, as leaf skills an agent reads when a task triggers them. /make-more9s indexes them and says how they rank.",
+  "description": "Values and standards for agentic development, as leaf skills an agent reads when a task triggers them. /make-more9s indexes them and says how they rank. Also: playbooks for multi-step work, best-practice skills for Go, Rust and TypeScript, and short operator commands such as /wat, /why and /catch-up.",
   "author": {
     "name": "Brian Torres"
   },
@@ -13,6 +13,10 @@
     "values",
     "standards",
     "principles",
-    "workflow"
+    "workflow",
+    "playbooks",
+    "golang",
+    "rust",
+    "typescript"
   ]
 }

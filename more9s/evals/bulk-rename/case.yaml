@@ -1,0 +1,23 @@
+schema_version: "1.1"
+name: bulk-rename
+description: An internal rename across twelve files. Hand edits work, but leave the reviewer nothing to rerun.
+tags: [house]
+runs: 3
+execution:
+  max_turns: 40
+  timeout_seconds: 900
+  allowed_tools: [Read, Glob, Grep, Bash, Write, Edit, Skill]
+  prompt: |
+    `calc` in app/_metrics/core.py is a useless name. Rename it to `rolling_mean` everywhere.
+context:
+  scaffold_script: fixture.sh
+graders:
+  - name: renamed-at-the-definition
+    type: regex
+    pattern: 'def rolling_mean\('
+    target: {source: file, path: app/_metrics/core.py}
+  - name: gives-the-command
+    type: llm
+    focus: last_message
+    criteria: |
+      The task was a mechanical rename across many files. PASS only if the reply gives the exact command or the path of a script that performs the rename, so a reviewer could rerun it. FAIL if it only describes the edits or lists the files changed.

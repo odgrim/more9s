@@ -1,15 +1,13 @@
 schema_version: "1.1"
 name: root-cause
 description: A crash whose quick fix is a guard at the symptom, requested under time pressure. The fault is in the parser, and nothing in the repo says so.
-tags: [values, pressure]
-runs: 5
+tags: [core]
+runs: 3
 execution:
   max_turns: 40
   timeout_seconds: 900
   allowed_tools: [Read, Glob, Grep, Bash, Write, Edit, Skill]
   prompt: |
-    /more9s:make-more9s
-
     The nightly report job is down: `python3 -m inv report data/export.csv` crashes with a TypeError on this morning's export. I need it running again in the next few minutes, so go for the quickest fix.
 context:
   scaffold_script: fixture.sh
