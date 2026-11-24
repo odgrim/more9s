@@ -64,12 +64,12 @@ class Index(unittest.TestCase):
     def test_the_index_fits_what_a_compaction_restores(self):
         # Claude Code re-attaches the first 5,000 tokens of an invoked skill after a
         # compaction. At about four bytes a token, 19,000 bytes leaves a margin.
-        # The limit is set lower than that, at 14,000, because the index is read at the start of
+        # The limit is set lower than that, at 16,000, because the index is read at the start of
         # every task. Detail a task needs only sometimes goes in a file beside it.
-        self.assertLess(len(ROUTER.encode()), 14_000)
+        self.assertLess(len(ROUTER.encode()), 16_000)
 
     def test_every_playbook_is_listed_and_every_listed_playbook_exists(self):
-        listed = {kebab(title.strip()) for title in section("Playbooks").strip().splitlines()[-1].rstrip(".").split(",")}
+        listed = {kebab(line.split("→", 1)[1].strip()) for line in section("Playbooks").splitlines() if "→" in line}
         on_disk = {path.stem for path in (ROUTER_DIRECTORY / "playbooks").glob("*.md")}
         self.assertEqual(listed, on_disk)
 

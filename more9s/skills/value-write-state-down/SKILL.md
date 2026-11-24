@@ -14,7 +14,7 @@ A compaction or a new session keeps the files and loses the reasoning. Anything 
 - Once there is a draft PR, keep the report in the PR body and delete the file. With no PR, delete it once the final reply has delivered the report.
 - Put in the draft the goal, the stated size, each decision with its reason, and each failed attempt `stop-and-report` counts. Write each one in when it happens. Don't count on recalling it later.
 - If a decision belongs to one commit, put it in that commit's message too.
-- After a compaction, reread the draft report and any leaf you're still applying. The harness restores `make-more9s` and drops most of what you read.
+- After a compaction, reread the draft report and any value or standard you're still applying. The harness restores `make-more9s` and drops most of what you read.
 
 ## Check
 

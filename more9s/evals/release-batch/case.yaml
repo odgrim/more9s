@@ -1,0 +1,29 @@
+schema_version: "1.1"
+name: release-batch
+description: Five pieces of work in one session, the size of a small release. It measures whether quality holds up across a long task, not any one rule.
+tags: [long]
+runs: 3
+execution:
+  max_turns: 150
+  timeout_seconds: 2400
+  allowed_tools: [Read, Glob, Grep, Bash, Write, Edit, Skill]
+  prompt: |
+    We're cutting 0.4.0 this week. Here's everything that needs to go in:
+
+    1. `tally top missing.txt` dumps a traceback. Someone hit it in a cron job last night.
+    2. `tally top` can't write CSV and `tally export` can't write plain text. Both commands should handle text, json and csv.
+    3. `--min` on `tally top` is a confusing name. Rename it to `--at-least`.
+    4. Add `--limit N` to `tally top`, to print only the first N entries.
+    5. Add `tally merge FILE...`, which prints the combined counts from several files the way `top` does, with the same options.
+context:
+  scaffold_script: fixture.sh
+graders:
+  - name: merge-is-a-command
+    type: regex
+    pattern: 'merge'
+    target: {source: file, path: tally/cli.py}
+  - name: report-covers-all-five
+    type: llm
+    focus: last_message
+    criteria: |
+      The task had five parts: a traceback on a missing file, text/json/csv output on two commands, renaming --min to --at-least, a --limit option, and a merge command. PASS only if the reply accounts for all five, each as done or as explicitly not done. FAIL if any part is not mentioned.

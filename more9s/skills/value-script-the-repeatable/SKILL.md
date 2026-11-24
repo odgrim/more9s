@@ -1,6 +1,6 @@
 ---
 name: value-script-the-repeatable
-description: "Apply when the work is mechanical or repeated: a bulk edit, a migration, generated fixtures, a multi-step CI job, a check you're about to run by hand a second time. Write the script and make it the artifact."
+description: "Apply when the work is bulk or batch: the same edit in more than a couple of places, one operation over many files or items, a migration, generated fixtures, a multi-step CI job, a check you're about to run by hand a second time. It applies even when one command does it all. Write the script and make it the artifact."
 disable-model-invocation: true
 ---
 

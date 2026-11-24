@@ -28,7 +28,8 @@ shift || true
 
 export PATH=".evalbin:../.evalbin:../../.evalbin:$PATH"
 
-variants="$plugin_root/.eval-variants"
+# Each run builds its arms in a directory of its own, so two runs can go at once.
+variants="$plugin_root/.eval-variants/$(basename "$prefix")"
 rm -rf "$variants"
 mkdir -p "$(dirname "$prefix")"
 

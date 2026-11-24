@@ -8,7 +8,7 @@
     {
       "name": "more9s",
       "source": "./more9s",
-      "description": "Values and standards for agentic development, as leaf skills an agent reads when a task triggers them. /make-more9s indexes them and says how they rank. Also: playbooks for multi-step work, best-practice skills for Go, Rust and TypeScript, and short operator commands such as /wat, /why and /catch-up.",
+      "description": "Values and standards for agentic development, as small skills an agent reads when a task triggers them. /make-more9s indexes them and says how they rank. Also: playbooks for multi-step work, best-practice skills for Go, Rust and TypeScript, and short operator commands such as /wat, /why and /catch-up.",
       "category": "development"
     }
   ]

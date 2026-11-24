@@ -61,7 +61,7 @@ After each Write or Edit, the hook checks the added text for the rules a pattern
 
 ## Develop
 
-The index and the leaves have to agree. A test checks that they do, and that the index stays small enough to survive a compaction:
+The index and the values and standards have to agree. A test checks that they do, and that the index stays small enough to survive a compaction:
 
 ```
 cd more9s
@@ -71,14 +71,14 @@ python3 -m unittest discover -s hooks -p 'test_*.py'
 
 ### Evals
 
-`more9s/evals/` holds six cases for `claude plugin eval`. Each is a small repo and an ordinary request, built so the easy path breaks a rule.
+`more9s/evals/` holds seven cases for `claude plugin eval`. Each is a small repo and an ordinary request, built so the easy path breaks a rule.
 
 ```
 more9s/evals/run.sh                      # every case
 more9s/evals/run.sh out/run --tag house  # the cases that test house rules
 ```
 
-The script runs each case in three arms (the whole plugin, the index with no leaves, and no plugin), then runs `grade.py`, which executes the code each run produced and writes one table. It runs agent-written code on your machine, outside the eval sandbox, and it costs real usage: about twenty dollars for the house cases at three runs per arm.
+The script runs each case in three arms (the whole plugin, the index with no values or standards behind it, and no plugin), then runs `grade.py`, which executes the code each run produced and writes one table. It runs agent-written code on your machine, outside the eval sandbox, and it costs real usage: about twenty dollars for the house cases at three runs per arm.
 
 ## Licence
 

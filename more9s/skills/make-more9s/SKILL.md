@@ -10,14 +10,22 @@ A value governs how you work and which design you pick. A standard is a rule for
 
 ## How to use the index
 
-Each entry under Values and Standards says when it applies, then the rule in brief. Its leaf is `../value-<title>/SKILL.md` or `../standard-<title>/SKILL.md`, with the title in kebab case.
+This file routes. Each entry under Values and Standards opens with when it applies ("When…", "If…"), then names the rule in a few words. If an entry's condition is true of your task, read that value or standard in full. The rule itself is in the value's or standard's own file: `../value-<title>/SKILL.md` or `../standard-<title>/SKILL.md`, with the title in kebab case.
 
-- Read a leaf in full before you apply or cite it, and again after a compaction. The brief isn't the whole rule.
-- In the report, name each one that shaped a decision and the choice it changed.
+- When the work changes direction, match it against the entries again and read what newly applies.
+- Don't apply an entry from its few words. They're there so you can recognise the rule, and they leave out its conditions and exceptions.
+- After a compaction, reread a value or standard before you apply or cite it again.
+- In the report, name each value or standard that shaped a decision and the choice it changed. Cite only ones you read this session.
 
 ## Every task
 
-Before the first edit, state the goal in one sentence, the smallest change that meets it, and the size of the work in units and files. What else a task owes scales with its size:
+Before the first edit, at any size:
+
+1. Go down the Values and Standards lists and note every entry whose condition is true of this task. A small task still triggers some: a one-line fix is a fix, and one command over many files is bulk work.
+2. Read each of those files in full, in one batch. Don't edit before you have. Reading is required, not scaled to the task: a task that changes a file and opened none has skipped this step.
+3. State the goal in one sentence, the smallest change that meets it, the size of the work in units and files, and which values and standards you read.
+
+What else a task owes scales with its size:
 
 - **It changes no file.** Give the answer and its evidence. No size, no report.
 - **One hunk in one file.** Make the change and report it and its evidence in a line each.
@@ -30,7 +38,7 @@ Say no when no is what you think. Don't default to agreeing.
 
 ## Ask-first actions
 
-These hold at every size, whether or not you've read a leaf.
+These hold at every size, whether or not you've read anything else.
 
 - Wait for the human's confirmation before an action that takes effect outside the PR: a merge, a force-push to a shared branch, an apply or deploy, deleting data, creating an issue, opening a PR against a repo the human can't write to, sending a message, publishing a package.
 - Wait too before a local action that closing the PR wouldn't undo: discarding uncommitted or untracked work the session didn't create, changing anything outside the checkout, installing a dependency or a version of one that the lockfile doesn't hold.
@@ -48,7 +56,7 @@ The report is the PR description if the work lands through a PR, and the final r
 3. **Gaps.** Asked and not done, done and not asked, and any check that failed or didn't run.
 4. **Evidence.** Each check's command and the output lines that carry its result. The command behind any change a command made.
 
-Each leaf ends in a Check. Run the ones a command can answer. `report.md`, beside this file, has the full form of each part and how to record checks. Read it before you write a report longer than a few lines.
+Each value and standard ends in a Check. Run the ones a command can answer. `report.md`, beside this file, has the full form of each part and how to record checks. Read it before you write a report longer than a few lines.
 
 ## Precedence
 
@@ -60,85 +68,94 @@ Each leaf ends in a Check. Run the ones a command can answer. `report.md`, besid
 
 When two in one tier disagree, the one that names the other says which wins. If neither does, take the reading that changes less outside the task and name the conflict in the gaps.
 
-## Around the task
+## Routes
 
-- **Existing repos.** Apply the standards to code you add. Where the repo already does the same thing another way, use its way and name the unmet standard in the report. `secrets-and-untrusted-input` and `secure-by-default` are the exceptions. `existing-repos.md`, beside this file, has the rest.
-- **Languages.** For Go, Rust, or TypeScript, also read `../<language>-best-practices/SKILL.md` (`golang`, `rust`, `typescript`).
-- **Subagents.** One that writes code, tests, or prose gets the absolute path of this file as the first line of its brief. You own what it returns: read its diff and run its checks.
-- **The hook.** It flags some of these rules in text a Write or Edit adds. It can't block, and it doesn't see edits made by a script or the shell, so check those yourself.
+These lead to a file that isn't a value or a standard. Paths are from this file.
+
+- When you write a report longer than a few lines, or record checks → `report.md`.
+- If the repo already does it another way, or a standard needs a structure the repo lacks → `existing-repos.md`.
+- When you write Go, Rust, or TypeScript → `../<language>-best-practices/SKILL.md` (`golang`, `rust`, `typescript`).
+- When you brief a subagent that writes code, tests, or prose → make the absolute path of this file the first line of its brief. Read its diff and run its checks before you cite them.
+- If a script or the shell made an edit → the hook didn't see it. Check the diff against the standards yourself.
 
 ## Values
 
 **Before and while building**
 
-- **Contract Before Code.** Before writing logic. Settle the types, inputs, outputs, and failures first, then a failing test, then the code. With no precedent in the repo, prototype two or three and compare.
-- **Proactively Look for Answers.** The request has two readings, or you're relying on a recalled fact. Settle it from the repo, the source, or a read-only call. Ask once only if a wrong guess is costly.
-- **Experience First.** A choice trades what the user meets against what's easier to build. Choose what the user meets.
-- **Finish What You Start.** The main path works and the rest is tempting to skip. Errors, help, docs, and failure paths are part of done. Cut scope before quality.
-- **Simplest Thing That Works.** Tempted to add an abstraction, option, layer, or dependency. Don't, unless the contract or a standard needs it. Leave code the task doesn't touch alone.
-- **Requirements Reshape the Design.** A new requirement meets an existing design. Build as if it had always been there, not as one more branch or flag. Past the owning module, lead with a proposal PR.
-- **Patterns Spread.** About to copy existing code, or the repo does one thing two ways. Find which way is current, from intent and not recency, before you copy.
-- **Do Not Copy Workarounds.** You find or are about to write code that makes up for a fault elsewhere. Fix the fault where it is.
-- **Encode Rules in Tooling.** Correcting a mistake or adding a convention. Enforce it with structure, a lint, or a test before prose, and watch the check fail on a real instance.
-- **Script the Repeatable.** A bulk edit, a migration, a check run twice. Write the script, even a one-line `sed`, and put the exact command in the commit body and the report's evidence.
+- **Contract Before Code.** When you're about to write logic for a feature, flag, config attribute, output, or bug fix, or if a design decision has no precedent in the repo. Settle what the change promises first.
+- **Proactively Look for Answers.** When the request could mean two things that build differently, when you're about to ask the human a question, or if you're relying on a recalled fact about an API, flag, default, or version. Look it up before you ask or build.
+- **Experience First.** When a name, default, error, output, or step the user meets is being traded against what's easier to build. Choose what the user meets.
+- **Finish What You Start.** When the main path works and the errors, help, docs, or failure paths are tempting to skip, or if a limit is reached with parts unbuilt. Finish what's started and name the rest.
+- **Simplest Thing That Works.** When you size a change, or if you're tempted to add an abstraction, option, layer, parameter, or dependency, or to tidy code the task doesn't touch. Write the least that solves the problem.
+- **Requirements Reshape the Design.** When a new requirement has to go into an existing design, and if one more branch, flag, or parameter would carry it. Design as if it had always been there.
+- **Patterns Spread.** When you're about to copy existing code, if the repo does one thing two ways, or if you'd have written it differently. Find which way is current first.
+- **Do Not Copy Workarounds.** When you find code that makes up for a fault elsewhere, or if you're about to write some. Fix the fault where it is.
+- **Encode Rules in Tooling.** When you correct a mistake, introduce a convention, write a lint, or are about to add a rule to docs or agent instructions. Make a check enforce it.
+- **Script the Repeatable.** When the work is bulk or batch: the same edit in more than a couple of places, one operation over many files or items, a migration, generated fixtures. Also if one command will do it all, or you're about to run a check by hand a second time. Script it and record the command.
 
 **Debugging and proof**
 
-- **Reproduce Before Fixing.** A failure is reported. Make it fail first, land the failing test before the fix, and ship only what that evidence supports.
-- **Fix Root Causes.** Debugging, or about to add a guard, retry, default, or catch. Fix the first place the system went wrong, not where it showed.
-- **Attack the Premise.** Two fixes sharing an assumption have failed the same check. Write the assumption down and test it before a third.
-- **Stop and Report.** A third attempt at one check has failed with nothing learned, or the work has passed twice its stated size twice. Return to the last passing state and report. Never loosen the check.
-- **Prove It Works.** Before calling a task done. Run what ships through the real flow and quote the output. A check that was inconclusive or on the wrong surface isn't a pass, so say which it was.
-- **Explain the Number.** Before trusting or reporting a measured number. Give the run count, the spread, a baseline measured the same way, and what limits it.
+- **Reproduce Before Fixing.** When a failure is reported: a crash, a wrong value, a red job. Also if the fix is urgent or the cause looks obvious. Make it fail first.
+- **Fix Root Causes.** When you debug, or if you're about to add a guard, null check, retry, default, clamp, or catch so a failure goes away. Fix where it first went wrong.
+- **Attack the Premise.** When two or more fixes that share one assumption have failed the same check. Test the assumption before a third.
+- **Stop and Report.** When a third attempt at one check has failed, when the work has outgrown its stated size, if you're rerunning a step on the same input, or if a check can't pass without weakening it. Stop and report.
+- **Prove It Works.** When the task looks finished, before you call it done, or if the only evidence is that it builds. Run what ships.
+- **Explain the Number.** When you're about to measure, and before you trust, report, or act on a number: a speedup, a regression, a latency, a size, an eval result. Show the spread and the baseline.
 
 **Autonomy and the session**
 
-- **The PR Is the Guard.** Tempted to ask "should I?" about how to do the work. Decide, do it, and list the decision for the reviewer. Commit each unit as Every task says.
-- **Ask-First Actions Wait for the Human.** About to take one, or to make the first push in a repo. Wait, and keep working on everything else.
-- **Guard the Context Window.** A command, file, or search would return more than the decision needs. Filter at the source, and give broad reading to a subagent.
-- **Write State Down.** The work may outlast the session, or a compaction has happened. Keep state in commits and the draft report, written as it happens.
+- **The PR Is the Guard.** When you're about to ask "should I?" about how to do the work, when you decide what goes in which commit or PR, or if you're about to finish with work uncommitted. Decide, commit, and list the decision.
+- **Ask-First Actions Wait for the Human.** When you're about to take an action on the ask-first list, make the first push in a repo, or act on a go-ahead given earlier. Wait, and work on the rest.
+- **Guard the Context Window.** When a command, file, search, or log would return more than the decision needs, or if you're about to reread something. Filter at the source.
+- **Write State Down.** When the work may outlast the session or spans several units, if a compaction has happened, or if you find a draft report you didn't start. Keep state in commits and the draft.
 
 ## Standards
 
 **Shape of the code**
 
-- **Organize by Dependency.** Placing code, or adding an import across modules. Split by what code may depend on, keep imports one-way, and give each module one small public surface.
-- **Indirection Earns Its Place.** Adding a wrapper, interface, layer, or option. Only with two implementations or a caller today. Keep state as local as it can be.
-- **One Owner Per Boundary.** Code touches the filesystem, environment, network, a subprocess, or a third-party library, or reaches for raw concurrency, reflection, or unsafe casts. One module owns each, and a lint sends everything else through it.
-- **Explicit Plumbing.** Code needs a logger, config, client, or cancellation. Pass it in through the signature, built at the entry point. No globals.
-- **Type System Discipline.** Designing types or a signature. Make illegal states unrepresentable, give semantic primitives their own type, and parse external data once at the boundary.
-- **Sets Are Closed or Open.** Code branches over a set of cases, or adds one of something the tool has many of. A closed set is handled case by case with no default, so a new one fails the build. An open set's members are plugins: one folder, one registry line.
-- **Errors Are Typed Values.** Returning, wrapping, catching, or testing an error. Callers branch on its type, never its text. Keep the original reachable.
-- **Errors Point at the Problem.** Writing an error about user input. Give the file, line, or flag, what was received, what was expected, and the likely fix.
-- **One Name Per Concept.** Naming anything. One word per concept everywhere, written out so a search finds every use. No `util` or `helpers`.
-- **Comments Say What Code Cannot.** Writing or keeping a comment or TODO. Only a reason, a consequence, or an outside constraint. A TODO carries its issue.
+- **Organize by Dependency.** When you decide where new code lives, create a directory, package, or module, or add an import that crosses one. Split by what may depend on what.
+- **Indirection Earns Its Place.** When you add a wrapper, interface, layer, or option, or if code is hard to trace through pass-through calls. Keep only what hides real complexity.
+- **One Owner Per Boundary.** When code touches the filesystem, environment, network, a subprocess, a third-party library, or a service, when you decide where validation goes, or if you're reaching for raw concurrency, timers, reflection, or an unsafe cast. One module owns each.
+- **Explicit Plumbing.** When you write a signature or constructor, or if code needs a logger, config, client, clock, or cancellation, or reads the environment. Pass it in.
+- **Type System Discipline.** When you design types, a signature, or stateful logic, or parse JSON, arguments, config, or rows. Make illegal states unrepresentable.
+- **Sets Are Closed or Open.** When code branches over a set of cases (an error variant, a state, a mode, a format, a status field), or if you're adding one more of something the tool has many of (a command, backend, provider, check). Decide which kind of set it is.
+- **Errors Are Typed Values.** When you return, raise, wrap, catch, discard, or test an error. Callers branch on type, not text.
+- **Errors Point at the Problem.** When you write an error about something the user supplied: a file, a flag, an argument, a config key, a document. Say where and what was expected.
+- **One Name Per Concept.** When you name or rename a type, function, file, package, flag, environment variable, config key, or log field. One searchable name everywhere.
+- **Comments Say What Code Cannot.** When you write, keep, or delete a comment, or if you're leaving a TODO or a note for later. Only what the code can't say.
 
 **State and safety**
 
-- **Idempotent Operations.** A step that changes state and can be retried or interrupted. Work from the state that exists, and end in the same place however often it runs.
-- **Bound Every Resource.** Code reads input of unknown size, fans out, queues, caches, or waits. Give each a stated limit and say what happens at it.
-- **Separate Shared State.** Concurrent actors might write the same file, branch, or key. Give each its own target before reaching for a lock.
-- **Secrets and Untrusted Input.** Code handles a credential, logs a received value, or builds a command, path, or query from input. Secrets never reach output, and input never becomes code.
-- **Secure by Default.** Code creates a role, policy, token, file, port, or connection. Grant the least it needs by name, and leave every protection on.
-- **Vet New Dependencies.** Adding or upgrading one. Try the standard library first, confirm the package is the real one, pin it, and give it its own commit and a line in the decisions. Installing it is ask-first.
+- **Idempotent Operations.** When you write a command, lifecycle step, migration, or loop that changes state, and if it can be interrupted, retried, or run twice. Same end state every time.
+- **Bound Every Resource.** When code reads input whose size it doesn't control, pages through results, fans out, fills a queue, buffer, or cache, or waits in a loop. Give each a limit.
+- **Separate Shared State.** When threads, processes, CI jobs, or agents might write the same file, branch, key, or object. Give each its own target.
+- **Secrets and Untrusted Input.** When code handles a credential, prints or logs a value it received, builds a command, path, or query from input, or writes a fixture, or if you're quoting output into a report. Secrets stay out of output, and input never becomes code.
+- **Secure by Default.** When code creates or configures a role, policy, token, file, port, listener, or connection, or if a test wants verification off. Least privilege, protections on.
+- **Vet New Dependencies.** When you add, upgrade, or install a package, or if you're about to reach for one the repo doesn't have. Look it up first. Installing is ask-first.
 
 **Surfaces**
 
-- **The CLI Is a Machine Contract** (`standard-cli-is-a-machine-contract`). Changing a command, flag, output, or exit path. Data on stdout, typed output on failure too, an environment variable per flag, and no prompt without a terminal.
-- **Public Interfaces Grow by Addition.** Changing a surface callers outside the codebase use. Add the new beside the old and keep the old working. A deprecated name warns on stderr with its replacement. A breaking change leads with a written proposal.
-- **A User-Facing Change Ships With Its Docs** (`standard-user-facing-change-ships-with-docs`). A change a user can observe. The changelog entry and every docs page that describes it land in the same PR.
+- **The CLI Is a Machine Contract** (`standard-cli-is-a-machine-contract`). When you add or change a command, flag, environment variable, output, prompt, or exit code. Treat it as an API scripts call.
+- **Public Interfaces Grow by Addition.** When you rename, remove, or alter anything used from outside the codebase (a flag, an API field, a file format, an exported name), or if you're judging whether a change to a default, exit code, or output order is compatible. Add beside the old.
+- **A User-Facing Change Ships With Its Docs** (`standard-user-facing-change-ships-with-docs`). When a change alters anything a user can observe: a flag, config attribute, output, behaviour, or error. Docs and changelog in the same PR.
 
 **The change itself**
 
-- **Test Contracts Over Implementation.** Writing, changing, or deleting a test. Assert what callers can observe, with the expected value from the requirement. Never loosen a test that fails because behaviour broke.
-- **No Golden Files.** Asserting on output. Assert the parts that matter, from the requirement. Store no copy of what the code produced.
-- **Fix the Code, Not the Check.** A check fails, or you're adding a suppression or exemption. Fix the code. A new lint that existing code fails lands with a named exemption list, not inline markers.
-- **Commits Prove the Work.** Ordering edits and commits. One change per unit, checked before the next, ordered so the sequence proves the work: the failing test before the fix.
-- **One Kind Per PR.** Splitting work into PRs. One kind of change each, with its tests and docs, at a size read in one sitting.
-- **Terse, Factual Prose** (`standard-terse-factual-prose`). Writing anything a human reads. Lead with what changes for the reader, give each claim its evidence or label it a guess, and use no em dashes.
+- **Test Contracts Over Implementation.** When you write, change, keep, skip, or delete a test, or if a test fails after your change. Assert what callers observe.
+- **No Golden Files.** When you assert on output (help text, a rendered error, machine-format output, a generated file), or if you're asked to "pin down" or snapshot something. Assert the parts that matter.
+- **Fix the Code, Not the Check.** When a check fails and loosening it would pass, if you're asked to add a suppression, skip, or exemption, or when you write a lint existing code fails. Fix the code.
+- **Commits Prove the Work.** When you order edits, run a sweep or migration, or decide what each commit holds. One checked unit per commit.
+- **One Kind Per PR.** When you split work into PRs, or if you're deciding whether a refactor, cleanup, or dependency rides with a change. One kind each.
+- **Terse, Factual Prose** (`standard-terse-factual-prose`). When you write anything a human reads: a reply, a commit message, a PR description, docs, a comment. Short and factual.
 
 ## Playbooks
 
-Open the steps at `playbooks/<title>.md`, with the title in kebab case.
+Steps for work that crosses several values and standards. Each is at `playbooks/<title>.md`, with the title in kebab case.
 
-Contract-first change, Replace a pattern, Migrate to plugins, Open a PR, After the PR opens, Maintain a stack, Unattended run.
+- When a feature or fix changes what a caller sees → Contract-first change
+- When you replace an old way of doing something across the repo → Replace a pattern
+- When a tool's commands, backends, or providers are being turned into plugins → Migrate to plugins
+- When the change lands through a PR → Open a PR
+- When a review comment or CI result arrives on a PR the session opened → After the PR opens
+- If something moves under a stack of PRs (a lower PR changes, the default branch conflicts, one merges or is rejected) → Maintain a stack
+- When the human asks for work to carry on without them, or gives a target to reach → Unattended run
