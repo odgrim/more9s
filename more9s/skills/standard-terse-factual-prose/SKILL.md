@@ -1,6 +1,6 @@
 ---
 name: standard-terse-factual-prose
-description: "Apply when you're writing anything a human reads: commit messages, PR descriptions, docs, replies. Write so it's understood on the first read, in the fewest words that allow it, and state facts."
+description: "Applies when writing anything a human reads: commit messages, PR descriptions, docs, replies. Requires prose that is understood on the first read, uses the fewest words that allow it, and states facts."
 disable-model-invocation: true
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: standard-errors-are-typed-values
-description: "Apply when you're returning, raising, wrapping, catching, or testing an error. Callers branch on an error's type or identity, not its text."
+description: "Applies when returning, raising, wrapping, catching, or testing an error. Requires that callers branch on an error's type or identity, not its text."
 disable-model-invocation: true
 ---
 

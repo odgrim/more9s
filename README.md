@@ -78,7 +78,13 @@ more9s/evals/run.sh                      # every case
 more9s/evals/run.sh out/run --tag house  # the cases that test house rules
 ```
 
-The script runs each case in three arms (the whole plugin, the index with no values or standards behind it, and no plugin), then runs `grade.py`, which executes the code each run produced and writes one table. It runs agent-written code on your machine, outside the eval sandbox, and it costs real usage: about twenty dollars for the house cases at three runs per arm.
+The script runs each case in three arms (the whole plugin, the index with no values or standards behind it, and no plugin), once per model, then runs `grade.py`, which executes the code each run produced and writes one table per model. The models are Sonnet and Opus. Set `MORE9S_EVAL_MODELS` to change them:
+
+```
+MORE9S_EVAL_MODELS="sonnet" more9s/evals/run.sh out/run --tag house
+```
+
+It runs agent-written code on your machine, outside the eval sandbox, and it costs real usage: the whole suite at three runs per arm came to about ten dollars on Sonnet and twenty-three on Opus, before the graders' own usage.
 
 ## Licence
 

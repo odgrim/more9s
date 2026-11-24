@@ -1,6 +1,6 @@
 ---
 name: value-write-state-down
-description: "Apply when the work may not fit one session, you're making a decision a later session will need, or a compaction has happened. Keep the state in commits and a draft of the report, not in context."
+description: "Applies when the work may not fit one session, a later session will need a decision being made now, or a compaction has happened. Keeps the state in commits and a draft of the report, not in context."
 disable-model-invocation: true
 ---
 

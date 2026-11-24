@@ -1,6 +1,6 @@
 ---
 name: golang-best-practices
-description: "How to meet the more9s standards in Go. Use when reading or editing a .go file, go.mod, or a golangci-lint config."
+description: "Shows how to meet the more9s standards in Go. Use when reading or editing a .go file, go.mod, or a golangci-lint config."
 paths: ["**/*.go", "**/go.mod", "**/.golangci*.yml"]
 disable-model-invocation: true
 ---

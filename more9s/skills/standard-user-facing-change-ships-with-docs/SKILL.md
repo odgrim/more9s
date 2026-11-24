@@ -1,6 +1,6 @@
 ---
 name: standard-user-facing-change-ships-with-docs
-description: "Apply when a change alters anything a user can observe: a flag, config attribute, output, behaviour, or an error they act on. Land the changelog entry and the docs in the same PR as the code."
+description: "Applies when a change alters anything a user can observe: a flag, config attribute, output, behaviour, or an error they act on. Lands the changelog entry and the docs in the same PR as the code."
 disable-model-invocation: true
 ---
 

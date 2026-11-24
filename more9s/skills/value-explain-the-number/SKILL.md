@@ -1,6 +1,6 @@
 ---
 name: value-explain-the-number
-description: "Apply before you measure, and before you trust, report, or act on a measured number: a speedup, a regression, a throughput, a latency, a size, an eval result. Show the spread, name what limits the number, and rule out that it measured something else."
+description: "Applies before measuring, and before trusting, reporting, or acting on a measured number: a speedup, a regression, a throughput, a latency, a size, an eval result. Shows the spread, names what limits the number, and rules out that it measured something else."
 disable-model-invocation: true
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: standard-one-owner-per-boundary
-description: "Apply when code touches the filesystem, environment, network, a subprocess, a third-party library, or an external service, you're deciding where validation goes, or you're reaching for a primitive that takes judgment to use correctly: raw concurrency, timers, reflection, unsafe casts, a low-level library API. Give each external system and each sharp primitive one owning module and send everything else through it."
+description: "Applies when code touches the filesystem, environment, network, a subprocess, a third-party library, or an external service, when deciding where validation goes, or when reaching for a primitive that takes judgment to use correctly: raw concurrency, timers, reflection, unsafe casts, a low-level library API. Gives each external system and each sharp primitive one owning module and sends everything else through it."
 disable-model-invocation: true
 ---
 

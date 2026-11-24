@@ -1,6 +1,6 @@
 ---
 name: standard-cli-is-a-machine-contract
-description: "Apply when you're adding or changing a CLI command, flag, environment variable, output, or exit path. Scripts and CI consume it, so treat its names and outputs as an API."
+description: "Applies when adding or changing a CLI command, flag, environment variable, output, or exit path. Treats its names and outputs as an API, because scripts and CI consume it."
 disable-model-invocation: true
 ---
 

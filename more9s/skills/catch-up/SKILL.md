@@ -1,6 +1,6 @@
 ---
 name: catch-up
-description: "Tell the human what changed since their last message and list everything waiting on them, each item answerable from the reply alone. Use for /catch-up."
+description: "Tells the human what changed since their last message and lists everything waiting on them, each item answerable from the reply alone. Use for /catch-up."
 disable-model-invocation: true
 ---
 

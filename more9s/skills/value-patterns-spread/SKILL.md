@@ -1,6 +1,6 @@
 ---
 name: value-patterns-spread
-description: "Apply when you're about to copy existing code, the repo does one thing two ways, or you'd have written it differently. Work out whether the existing way is current before you copy it, because the next author will copy yours."
+description: "Applies before copying existing code, when the repo does one thing two ways, or when the existing way isn't how the agent would have written it. Works out whether the existing way is current before copying it, because the next author will copy the result."
 disable-model-invocation: true
 ---
 

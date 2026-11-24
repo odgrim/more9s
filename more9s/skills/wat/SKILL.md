@@ -1,6 +1,6 @@
 ---
 name: wat
-description: "Say the last message again in plain words. Use for /wat."
+description: "Says the last message again in plain words. Use for /wat."
 disable-model-invocation: true
 ---
 

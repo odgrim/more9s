@@ -1,6 +1,6 @@
 ---
 name: value-finish-what-you-start
-description: "Apply when you hit a stop-and-report limit or one the human gave with parts of the request unbuilt, or the main path works and the rest is tempting to skip. Finish what you started and name the rest."
+description: "Applies when a stop-and-report limit, or one the human gave, is reached with parts of the request unbuilt, or when the main path works and the rest is tempting to skip. Finishes what was started and names the rest."
 disable-model-invocation: true
 ---
 

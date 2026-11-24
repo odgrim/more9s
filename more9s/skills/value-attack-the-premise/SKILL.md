@@ -1,6 +1,6 @@
 ---
 name: value-attack-the-premise
-description: "Apply when two or more fixes that share one premise have failed the same check. Write the premise down and test it directly before you write another fix that assumes it."
+description: "Applies when two or more fixes that share one premise have failed the same check. Writes the premise down and tests it directly before another fix assumes it."
 disable-model-invocation: true
 ---
 

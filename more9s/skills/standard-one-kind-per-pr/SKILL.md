@@ -1,6 +1,6 @@
 ---
 name: standard-one-kind-per-pr
-description: "Apply when you're splitting work into PRs or deciding whether something rides with a change. Keep each PR to one kind of change, at a size a reviewer can read in one sitting."
+description: "Applies when splitting work into PRs or deciding whether something rides with a change. Keeps each PR to one kind of change, at a size a reviewer can read in one sitting."
 disable-model-invocation: true
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: standard-sets-are-closed-or-open
-description: "Apply when code branches over a set of cases (an error variant, a state, a mode, an API's status field), you're adding or changing something the tool has many of (a command, block, backend, provider, check), or shared code is about to name one of them. Decide whether the set is closed or open. Handle every case of a closed set explicitly, so adding one fails the build. Make each member of an open set a plugin: one folder, one contract, one line in one registry."
+description: "Applies when code branches over a set of cases (an error variant, a state, a mode, an API's status field), when adding or changing something the tool has many of (a command, block, backend, provider, check), or when shared code is about to name one of them. Decides whether the set is closed or open. Handles every case of a closed set explicitly, so adding one fails the build. Makes each member of an open set a plugin: one folder, one contract, one line in one registry."
 disable-model-invocation: true
 ---
 

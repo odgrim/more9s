@@ -1,6 +1,6 @@
 ---
 name: audit-mistakes
-description: "Find the mistakes that keep being made in this repo and make each one fail a check. Use for /audit-mistakes."
+description: "Finds the mistakes that keep being made in this repo and makes each one fail a check. Use for /audit-mistakes."
 disable-model-invocation: true
 ---
 

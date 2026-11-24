@@ -1,6 +1,6 @@
 ---
 name: standard-one-name-per-concept
-description: "Apply when you're naming or renaming anything: a type, function, variable, file, package, flag, config key, log field. Give each concept one name used everywhere, so a search for it finds every use."
+description: "Applies when naming or renaming anything: a type, function, variable, file, package, flag, config key, log field. Gives each concept one name used everywhere, so a search for it finds every use."
 disable-model-invocation: true
 ---
 

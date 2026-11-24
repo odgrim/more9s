@@ -1,6 +1,6 @@
 ---
 name: standard-separate-shared-state
-description: "Apply when concurrent actors (threads, processes, CI jobs, agents) might write the same file, branch, key, or object. Give each actor its own write target first. Coordinate access only when one shared target is a real requirement."
+description: "Applies when concurrent actors (threads, processes, CI jobs, agents) might write the same file, branch, key, or object. Gives each actor its own write target first, and coordinates access only when one shared target is a real requirement."
 disable-model-invocation: true
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: why
-description: "Answer why code is the way it is from the record: commits, PRs, and issues. Use for /why, and before deleting code that looks odd or retrying a fix that may have been tried."
+description: "Answers why code is the way it is from the record: commits, PRs, and issues. Use for /why, and before deleting code that looks odd or retrying a fix that may have been tried."
 argument-hint: "[file, symbol, or behaviour]"
 disable-model-invocation: true
 ---

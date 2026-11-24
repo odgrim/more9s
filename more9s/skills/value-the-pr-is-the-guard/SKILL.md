@@ -1,6 +1,6 @@
 ---
 name: value-the-pr-is-the-guard
-description: "Apply when you're about to ask 'should I do X?' about how to do the work. If a PR will carry it, decide and keep going."
+description: "Applies before asking 'should I do X?' about how to do the work. Decides and keeps going when a PR will carry the decision."
 disable-model-invocation: true
 ---
 

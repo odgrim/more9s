@@ -1,6 +1,6 @@
 ---
 name: value-ask-first-actions-wait-for-the-human
-description: "Apply when you're about to take an action that takes effect outside the PR or that closing the PR wouldn't undo, or to make the first push in a repo. Wait for the human's confirmation and keep working on everything else."
+description: "Applies before an action that takes effect outside the PR or that closing the PR wouldn't undo, and before the first push in a repo. Waits for the human's confirmation and keeps working on everything else."
 disable-model-invocation: true
 ---
 

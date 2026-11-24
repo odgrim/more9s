@@ -1,6 +1,6 @@
 ---
 name: value-prove-it-works
-description: "Apply when you've finished a task, before you call it done. Exercise the real artifact, not a proxy or 'it compiles'."
+description: "Applies when a task is finished, before it is called done. Exercises the real artifact, not a proxy or 'it compiles'."
 disable-model-invocation: true
 ---
 

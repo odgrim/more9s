@@ -1,6 +1,6 @@
 ---
 name: what-breaks
-description: "Find what a change breaks outside its own diff, and prove the one fact its safety rests on by running code. Use for /what-breaks."
+description: "Finds what a change breaks outside its own diff, and proves the one fact its safety rests on by running code. Use for /what-breaks."
 argument-hint: "[diff, PR, or description of the change]"
 disable-model-invocation: true
 ---

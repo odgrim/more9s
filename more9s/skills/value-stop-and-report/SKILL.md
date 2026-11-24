@@ -1,6 +1,6 @@
 ---
 name: value-stop-and-report
-description: "Apply when a third attempt at the same check has failed with nothing new learned, the work has outgrown its stated size twice, or you're repeating a step you already ran. Stop, go back to the last state whose checks passed, and report what you know."
+description: "Applies when a third attempt at the same check has failed with nothing new learned, the work has outgrown its stated size twice, or a step already run is being repeated. Stops, goes back to the last state whose checks passed, and reports what is known."
 disable-model-invocation: true
 ---
 

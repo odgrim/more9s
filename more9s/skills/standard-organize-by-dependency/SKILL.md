@@ -1,6 +1,6 @@
 ---
 name: standard-organize-by-dependency
-description: "Apply when you're deciding where new code lives, creating a directory, package, or module, or adding an import that crosses one. Split by what code may depend on, and give each module one small public surface."
+description: "Applies when deciding where new code lives, creating a directory, package, or module, or adding an import that crosses one. Splits code by what it may depend on, and gives each module one small public surface."
 disable-model-invocation: true
 ---
 

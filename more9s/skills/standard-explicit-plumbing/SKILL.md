@@ -1,6 +1,6 @@
 ---
 name: standard-explicit-plumbing
-description: "Apply when you're writing a function signature or constructor, or code needs logging, cancellation, configuration, a client, or telemetry. Pass everything a unit depends on explicitly, not through ambient state."
+description: "Applies when writing a function signature or constructor, or when code needs logging, cancellation, configuration, a client, or telemetry. Passes everything a unit depends on explicitly, not through ambient state."
 disable-model-invocation: true
 ---
 

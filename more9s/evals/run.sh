@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
-# Run the eval suite in three arms at once, then run the hidden checks over all of them.
+# Run the eval suite once per model, in three arms at once, then run the hidden checks
+# over each model's arms.
 #
 #   evals/run.sh [RESULT_PREFIX] [extra `claude plugin eval` arguments, such as --tag house]
+#
+# The models come from MORE9S_EVAL_MODELS, a space-separated list that defaults to
+# "sonnet opus". Each model gets its own result files and table:
+# RESULT_PREFIX.<model>.<arm>.json and RESULT_PREFIX.<model>.md. Don't pass --model
+# as an extra argument. Set the variable.
 #
 # The arms:
 #   full    the whole plugin, with /more9s:make-more9s as the first line of every prompt
@@ -25,6 +31,13 @@ plugin_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 prefix="${1:-$plugin_root/evals/results/latest}"
 prefix="${prefix%.json}"
 shift || true
+read -r -a models <<< "${MORE9S_EVAL_MODELS:-sonnet opus}"
+for argument in "$@"; do
+  if [ "$argument" = "--model" ]; then
+    echo "run.sh: set MORE9S_EVAL_MODELS instead of passing --model" >&2
+    exit 2
+  fi
+done
 
 export PATH=".evalbin:../.evalbin:../../.evalbin:$PATH"
 
@@ -32,6 +45,8 @@ export PATH=".evalbin:../.evalbin:../../.evalbin:$PATH"
 variants="$plugin_root/.eval-variants/$(basename "$prefix")"
 rm -rf "$variants"
 mkdir -p "$(dirname "$prefix")"
+# The arms run from their own directories, so the prefix has to be absolute.
+prefix="$(cd "$(dirname "$prefix")" && pwd)/$(basename "$prefix")"
 
 build_arm() {
   local arm="$1" target="$variants/$1"
@@ -57,17 +72,23 @@ PY
   fi
 }
 
-graded=()
 for arm in full router none; do
   build_arm "$arm"
-  graded+=("$arm=$prefix.$arm.json")
 done
-# The arms run at the same time. Each writes its own result file and log.
-for arm in full router none; do
-  (cd "$variants/$arm" && claude plugin eval . --ablation none --scaffold --trust-plugin --no-publish \
-    --keep-temp -j 6 --allow-tools Bash Write Edit --json "$prefix.$arm.json" "$@" > "$prefix.$arm.log" 2>&1) || true &
-done
-wait
 
+# The models run one after another, because every run shares one rate limit. Within a
+# model the arms run at the same time, and each writes its own result file and log.
 cd "$plugin_root"
-python3 evals/grade.py "${graded[@]}" --markdown "$prefix.md" --json "$prefix.checks.json"
+status=0
+for model in "${models[@]}"; do
+  graded=()
+  for arm in full router none; do
+    graded+=("$arm=$prefix.$model.$arm.json")
+    (cd "$variants/$arm" && claude plugin eval . --ablation none --scaffold --trust-plugin --no-publish \
+      --keep-temp -j 6 --allow-tools Bash Write Edit --model "$model" \
+      --json "$prefix.$model.$arm.json" "$@" > "$prefix.$model.$arm.log" 2>&1) || true &
+  done
+  wait
+  python3 evals/grade.py "${graded[@]}" --markdown "$prefix.$model.md" --json "$prefix.$model.checks.json" || status=$?
+done
+exit "$status"

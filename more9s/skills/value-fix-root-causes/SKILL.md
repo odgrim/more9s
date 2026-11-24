@@ -1,6 +1,6 @@
 ---
 name: value-fix-root-causes
-description: "Apply when you're debugging, or about to add a guard, retry, default, clamp, or catch to make a failure go away. Fix the first place the system went wrong, not the place it showed."
+description: "Applies when debugging, or before adding a guard, retry, default, clamp, or catch to make a failure go away. Fixes the first place the system went wrong, not the place it showed."
 disable-model-invocation: true
 ---
 

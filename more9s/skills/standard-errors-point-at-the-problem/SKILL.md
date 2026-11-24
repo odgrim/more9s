@@ -1,6 +1,6 @@
 ---
 name: standard-errors-point-at-the-problem
-description: "Apply when you're writing an error about user input: a config file, a flag, an argument, a document. Say exactly where the input is wrong and what was expected."
+description: "Applies when writing an error about user input: a config file, a flag, an argument, a document. Requires the error to say exactly where the input is wrong and what was expected."
 disable-model-invocation: true
 ---
 

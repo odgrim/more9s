@@ -1,6 +1,6 @@
 ---
 name: value-proactively-look-for-answers
-description: "Apply when a request could mean two things that would lead to different builds, or you're about to build on a fact you recall about an API, a flag, or a version. Resolve it from the repo, the source, or a read-only call, and ask once only when none of those settles it and a wrong guess would be costly."
+description: "Applies when a request could mean two things that would lead to different builds, or before building on a recalled fact about an API, a flag, or a version. Resolves it from the repo, the source, or a read-only call, and asks once only when none of those settles it and a wrong guess would be costly."
 disable-model-invocation: true
 ---
 

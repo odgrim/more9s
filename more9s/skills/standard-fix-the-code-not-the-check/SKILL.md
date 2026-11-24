@@ -1,6 +1,6 @@
 ---
 name: standard-fix-the-code-not-the-check
-description: "Apply when you're writing a lint or CI check, a check fails and loosening it would make it pass, or you're adding a suppression, skip, or exemption. Fix the code, not the check, and keep every exemption where it can be found."
+description: "Applies when writing a lint or CI check, when a check fails and loosening it would make it pass, or when adding a suppression, skip, or exemption. Fixes the code, not the check, and keeps every exemption where it can be found."
 disable-model-invocation: true
 ---
 

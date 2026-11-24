@@ -1,6 +1,6 @@
 ---
 name: standard-vet-new-dependencies
-description: "Apply when you're adding, upgrading, or installing a dependency. Look the package up before you add it, pin it, and put it in front of the reviewer as its own decision."
+description: "Applies when adding, upgrading, or installing a dependency. Looks the package up before adding it, pins it, and puts it in front of the reviewer as its own decision."
 disable-model-invocation: true
 ---
 

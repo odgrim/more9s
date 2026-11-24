@@ -1,6 +1,6 @@
 ---
 name: value-reproduce-before-fixing
-description: "Apply when a failure is reported, before you change behaviour to fix it. Make it fail first, and ship only what the reproduction's evidence supports."
+description: "Applies when a failure is reported, before behaviour is changed to fix it. Makes it fail first, and ships only what the reproduction's evidence supports."
 disable-model-invocation: true
 ---
 

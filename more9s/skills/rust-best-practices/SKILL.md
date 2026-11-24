@@ -1,6 +1,6 @@
 ---
 name: rust-best-practices
-description: "How to meet the more9s standards in Rust. Use when reading or editing a .rs file or a Cargo.toml."
+description: "Shows how to meet the more9s standards in Rust. Use when reading or editing a .rs file or a Cargo.toml."
 paths: ["**/*.rs", "**/Cargo.toml"]
 disable-model-invocation: true
 ---

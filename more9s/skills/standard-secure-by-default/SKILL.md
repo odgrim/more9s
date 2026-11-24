@@ -1,6 +1,6 @@
 ---
 name: standard-secure-by-default
-description: "Apply when code creates or configures a role, policy, token, file, port, or connection. Grant the least it needs and leave every protection on."
+description: "Applies when code creates or configures a role, policy, token, file, port, or connection. Grants the least it needs and leaves every protection on."
 disable-model-invocation: true
 ---
 

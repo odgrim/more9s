@@ -1,6 +1,6 @@
 ---
 name: standard-idempotent-operations
-description: "Apply when you're writing a command, lifecycle step, migration, or processing loop that changes state and can be interrupted, retried, or run twice. Reach the same end state however many times it runs and wherever the last run stopped."
+description: "Applies when writing a command, lifecycle step, migration, or processing loop that changes state and can be interrupted, retried, or run twice. Requires the same end state however many times it runs and wherever the last run stopped."
 disable-model-invocation: true
 ---
 

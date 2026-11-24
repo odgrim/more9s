@@ -1,6 +1,6 @@
 ---
 name: standard-test-contracts-over-implementation
-description: "Apply when you write, change, keep, skip, or delete a test. Assert what the code's users can observe, so the test fails when that behaviour breaks and keeps passing when only the internals change."
+description: "Applies when writing, changing, keeping, skipping, or deleting a test. Asserts what the code's users can observe, so the test fails when that behaviour breaks and keeps passing when only the internals change."
 disable-model-invocation: true
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: be-quiet
-description: "Delete or shorten the code comments in the current change, keeping only what the code can't say. Use for /be-quiet."
+description: "Deletes or shortens the code comments in the current change, keeping only what the code can't say. Use for /be-quiet."
 argument-hint: "[files, or nothing for the current diff]"
 disable-model-invocation: true
 ---

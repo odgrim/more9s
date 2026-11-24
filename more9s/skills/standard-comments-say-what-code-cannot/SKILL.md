@@ -1,6 +1,6 @@
 ---
 name: standard-comments-say-what-code-cannot
-description: "Apply when you're writing, keeping, or deleting a code comment or a TODO. Write one only for what the code can't say."
+description: "Applies when writing, keeping, or deleting a code comment or a TODO. Allows a comment only for what the code can't say."
 disable-model-invocation: true
 ---
 

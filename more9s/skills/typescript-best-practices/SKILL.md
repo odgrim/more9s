@@ -1,6 +1,6 @@
 ---
 name: typescript-best-practices
-description: "How to meet the more9s standards in TypeScript. Use when reading or editing a .ts or .tsx file."
+description: "Shows how to meet the more9s standards in TypeScript. Use when reading or editing a .ts or .tsx file."
 paths: ["**/*.ts", "**/*.tsx"]
 disable-model-invocation: true
 ---

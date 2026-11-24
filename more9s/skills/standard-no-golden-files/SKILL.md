@@ -1,6 +1,6 @@
 ---
 name: standard-no-golden-files
-description: "Apply when you're asserting on output: machine-format output, rendered text, a generated file, a fixture. State the expected value from the requirement. Don't store a copy of what the code produced."
+description: "Applies when asserting on output: machine-format output, rendered text, a generated file, a fixture. States the expected value from the requirement, and forbids storing a copy of what the code produced."
 disable-model-invocation: true
 ---
 

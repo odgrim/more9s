@@ -1,6 +1,6 @@
 ---
 name: standard-type-system-discipline
-description: "Apply when you're designing types, a function signature, or stateful logic, with or without a static checker. Make illegal states unrepresentable, give semantic primitives their own type, and parse external data at the boundary."
+description: "Applies when designing types, a function signature, or stateful logic, with or without a static checker. Makes illegal states unrepresentable, gives semantic primitives their own type, and parses external data at the boundary."
 disable-model-invocation: true
 ---
 

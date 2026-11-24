@@ -1,6 +1,6 @@
 ---
 name: value-simplest-thing-that-works
-description: "Apply when you're sizing a change, or tempted to add an abstraction, option, layer, or dependency. Write the simplest code that solves the actual problem and respects the type system."
+description: "Applies when sizing a change, or when tempted to add an abstraction, option, layer, or dependency. Writes the simplest code that solves the actual problem and respects the type system."
 disable-model-invocation: true
 ---
 

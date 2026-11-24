@@ -1,6 +1,6 @@
 ---
 name: standard-secrets-and-untrusted-input
-description: "Apply when code handles a credential or token, prints or logs a value it received, builds a command, path, or query from input, or writes a fixture, or you're quoting output into a report. Secrets never reach output, and input never becomes code."
+description: "Applies when code handles a credential or token, prints or logs a value it received, builds a command, path, or query from input, or writes a fixture, or when quoting output into a report. Keeps secrets out of output and stops input from becoming code."
 disable-model-invocation: true
 ---
 

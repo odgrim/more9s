@@ -1,6 +1,6 @@
 ---
 name: sharpen
-description: "Rewrite a prompt so it asks for what an expert would do, without making the task bigger. Use for /sharpen."
+description: "Rewrites a prompt so it asks for what an expert would do, without making the task bigger. Use for /sharpen."
 argument-hint: "[the prompt to sharpen]"
 disable-model-invocation: true
 ---

@@ -1,6 +1,6 @@
 ---
 name: standard-bound-every-resource
-description: "Apply when code reads input whose size it doesn't control, collects results, starts concurrent work, fills a queue, buffer, or cache, or waits in a loop. Give each one a stated limit and a defined behaviour when the limit is reached."
+description: "Applies when code reads input whose size it doesn't control, collects results, starts concurrent work, fills a queue, buffer, or cache, or waits in a loop. Gives each one a stated limit and a defined behaviour when the limit is reached."
 disable-model-invocation: true
 ---
 

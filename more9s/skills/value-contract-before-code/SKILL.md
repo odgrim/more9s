@@ -1,6 +1,6 @@
 ---
 name: value-contract-before-code
-description: "Apply when you're about to write logic for a feature, flag, config attribute, output, or bug fix. Settle what the change promises before you write how it works."
+description: "Applies before writing logic for a feature, flag, config attribute, output, or bug fix. Settles what the change promises before how it works."
 disable-model-invocation: true
 ---
 

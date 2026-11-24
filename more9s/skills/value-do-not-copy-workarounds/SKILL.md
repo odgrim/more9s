@@ -1,6 +1,6 @@
 ---
 name: value-do-not-copy-workarounds
-description: "Apply when you find code that makes up for a fault somewhere else, or you're about to write some. Fix the fault where it is."
+description: "Applies on finding code that makes up for a fault somewhere else, or before writing some. Fixes the fault where it is."
 disable-model-invocation: true
 ---
 

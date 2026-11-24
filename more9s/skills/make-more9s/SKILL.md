@@ -1,6 +1,6 @@
 ---
 name: make-more9s
-description: "Work to the more9s values and standards. Use for /make-more9s."
+description: "Applies the more9s values and standards to a task. Use for /make-more9s."
 disable-model-invocation: true
 ---
 

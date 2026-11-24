@@ -1,6 +1,6 @@
 ---
 name: value-experience-first
-description: "Apply when a design choice trades what the user meets (a name, a default, an error, an output, a step they have to take) against what's easier to build. Choose what the user meets."
+description: "Applies when a design choice trades what the user meets (a name, a default, an error, an output, a step they have to take) against what's easier to build. Chooses what the user meets."
 disable-model-invocation: true
 ---
 

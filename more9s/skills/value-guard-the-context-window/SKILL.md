@@ -1,6 +1,6 @@
 ---
 name: value-guard-the-context-window
-description: "Apply when a command, file, or search is about to return more than the decision needs, or you're about to read something the session already holds. Take in only what the decision needs and keep bulk out of the main thread."
+description: "Applies when a command, file, or search is about to return more than the decision needs, or before reading something the session already holds. Takes in only what the decision needs and keeps bulk out of the main thread."
 disable-model-invocation: true
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: standard-commits-prove-the-work
-description: "Apply when you're ordering edits, running a sweep or migration, or deciding what each commit holds. Work in small units that each end in a check, and order the commits so the sequence proves the work."
+description: "Applies when ordering edits, running a sweep or migration, or deciding what each commit holds. Splits the work into small units that each end in a check, and orders the commits so the sequence proves the work."
 disable-model-invocation: true
 ---
 

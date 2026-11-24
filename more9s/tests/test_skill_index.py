@@ -82,7 +82,7 @@ class Leaves(unittest.TestCase):
                     fields = frontmatter(SKILLS / name / "SKILL.md")
                     self.assertEqual(fields["name"], name)
                     self.assertEqual(fields["disable-model-invocation"], "true")
-                    self.assertTrue(fields["description"].startswith('"Apply '), fields["description"])
+                    self.assertTrue(fields["description"].startswith('"Applies '), fields["description"])
 
     def test_every_leaf_ends_in_a_check(self):
         for kind in KINDS:

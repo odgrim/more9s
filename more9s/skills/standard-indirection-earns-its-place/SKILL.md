@@ -1,6 +1,6 @@
 ---
 name: standard-indirection-earns-its-place
-description: "Apply when you're adding a wrapper, interface, layer, or option, or code is hard to trace. Keep indirection only where it hides real complexity or sits on an enforced boundary, and keep state as local as you can."
+description: "Applies when adding a wrapper, interface, layer, or option, or when code is hard to trace. Keeps indirection only where it hides real complexity or sits on an enforced boundary, and keeps state as local as possible."
 disable-model-invocation: true
 ---
 

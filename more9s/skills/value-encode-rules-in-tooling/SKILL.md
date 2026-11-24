@@ -1,6 +1,6 @@
 ---
 name: value-encode-rules-in-tooling
-description: "Apply when you're correcting a mistake, introducing a convention, or about to add a rule to docs or agent instructions. Enforce it with structure, a lint, or a test before you write more prose."
+description: "Applies when correcting a mistake, introducing a convention, or adding a rule to docs or agent instructions. Enforces the rule with structure, a lint, or a test before more prose is written."
 disable-model-invocation: true
 ---
 

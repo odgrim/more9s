@@ -1,6 +1,6 @@
 ---
 name: value-requirements-reshape-the-design
-description: "Apply when a new requirement has to go into an existing design. Design the code as if the requirement had been there from the start, and build toward that. Carry it as a special case (an extra branch, flag, or parameter) only when the reshape isn't yours to make yet."
+description: "Applies when a new requirement has to go into an existing design. Designs the code as if the requirement had been there from the start, and builds toward that. Carries it as a special case (an extra branch, flag, or parameter) only when the reshape isn't the agent's to make yet."
 disable-model-invocation: true
 ---
 

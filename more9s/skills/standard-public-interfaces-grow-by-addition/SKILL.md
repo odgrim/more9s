@@ -1,6 +1,6 @@
 ---
 name: standard-public-interfaces-grow-by-addition
-description: "Apply when a change adds to, renames, removes, or alters a surface that a program or author outside the codebase depends on, or you're judging whether such a change is compatible: a default, an exit code, an output field, an ordering, a fix to shipped behaviour. Add beside the old, keep the old working, and put a breaking or significant change in front of the reviewer as a written proposal."
+description: "Applies when a change adds to, renames, removes, or alters a surface that a program or author outside the codebase depends on, or when judging whether such a change is compatible: a default, an exit code, an output field, an ordering, a fix to shipped behaviour. Adds beside the old, keeps the old working, and puts a breaking or significant change in front of the reviewer as a written proposal."
 disable-model-invocation: true
 ---
 
