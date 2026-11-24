@@ -1,10 +1,10 @@
 ---
-name: standard-change-composition
+name: standard-commits-prove-the-work
 description: "Apply when you're ordering edits, running a sweep or migration, or deciding what each commit holds. Work in small units that each end in a check, and order the commits so the sequence proves the work."
 disable-model-invocation: true
 ---
 
-# Change Composition
+# Commits Prove the Work
 
 A reviewer trusts a sequence they can replay. If a result surprises you, you don't understand the change yet.
 

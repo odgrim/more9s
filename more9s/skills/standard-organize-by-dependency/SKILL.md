@@ -1,10 +1,10 @@
 ---
-name: standard-code-organization
+name: standard-organize-by-dependency
 description: "Apply when you're deciding where new code lives, creating a directory, package, or module, or adding an import that crosses one. Split by what code may depend on, and give each module one small public surface."
 disable-model-invocation: true
 ---
 
-# Code Organization
+# Organize by Dependency
 
 A file's path should tell the reader where it runs and what it may import.
 
@@ -12,7 +12,7 @@ A file's path should tell the reader where it runs and what it may import.
 - Keep imports one-way, with no cycles. Enforce that with the compiler or a linter, not a README.
 - If two directories need the same code, move it down to one both may import.
 - Give each module one declared public surface. Keep the rest private, by the language or a linter.
-- Don't keep a module whose API is about as big as its implementation. It adds nothing.
+- Don't keep a module whose API is about as big as its implementation. It adds nothing, unless it owns a boundary or confines a sharp primitive.
 
 ## Check
 

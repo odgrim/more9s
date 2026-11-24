@@ -11,7 +11,7 @@ A passing build shows the code compiles, not that it does what was asked.
 - Run what ships (the binary, the app, the published package) through the real flow and read the actual output. A self-report or cached output isn't evidence.
 - Watch each new check fail before you trust it.
 - If a check fails unexpectedly, confirm it measured what you think before you change the system.
-- Never hand the user a check you could run yourself.
+- Never hand the human a check you could run yourself.
 - A check on the wrong surface, or one that came back inconclusive, isn't a pass. Say which it was.
 - Prefer a check CI also runs, so the reviewer reads the run and not your quote of it.
 - If the real flow is an ask-first action (an apply, a deploy, a publish), verify on the nearest surface you're allowed to use (a plan, a dry run, a sandbox) and name the gap in the report.

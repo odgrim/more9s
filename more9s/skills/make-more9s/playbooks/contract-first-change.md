@@ -7,4 +7,4 @@
 
 Skip steps 1 and 2 for a small internal change. Skip step 3 for a change that alters no observable behaviour (a refactor, a rename, docs), and run the existing tests before and after. If no existing test would catch a change in the code you're refactoring, write a characterization test first, as `no-golden-files` allows.
 
-For a significant change to a public surface, put the written proposal in the first PR of the stack, as `public-interface-changes` requires.
+For a significant change to a public surface, put the written proposal in the first PR of the stack, as `public-interfaces-grow-by-addition` requires.

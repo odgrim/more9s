@@ -20,6 +20,7 @@ Then:
 - Pair "this never happens" with a case where it does. Assert the error type callers branch on, not the message.
 - Make a test give the same result on every run. Pass in the clock, the random seed, and the ordering, and use a fake for the network.
 - Never delete, skip, or loosen a test that fails because behaviour broke. If one fails only because internals changed, rewrite it to assert the contract, or delete it if another test already does.
+- If a test fails because the contract changed on purpose, rewrite it to assert the new contract and list it in the report's decisions.
 - Report any existing test that fails either edit and that the task doesn't touch.
 
 ## Check

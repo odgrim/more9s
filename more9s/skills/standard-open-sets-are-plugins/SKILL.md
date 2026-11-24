@@ -1,10 +1,10 @@
 ---
-name: standard-plugin-architecture
+name: standard-open-sets-are-plugins
 description: "Apply when you're adding or changing something the tool has many of (a command, block, backend, provider, check), or shared code is about to name one of them. Make each one a plugin: one folder, one contract, one line in one registry."
 disable-model-invocation: true
 ---
 
-# Plugin Architecture
+# Open Sets Are Plugins
 
 A tool that has many of something is a small core plus those things. A tool with no open set has no plugins.
 

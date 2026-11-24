@@ -14,7 +14,7 @@ Nothing fails when someone skips a written rule. Use the strongest of these that
 4. Prose.
 
 - Add the check with the first correction if any author could repeat the mistake: it broke a standard, a documented convention, or an invariant of the code.
-- Skip the check for one person's preference on one change. The second time it comes up, it's a rule.
+- Skip the check for one person's preference on one change. Name it in the report's decisions with a proposed line for the repo's agent instructions file, because a later session can't recall it. If that file already holds the line, this is the second time and it's a rule.
 - Add a convention's check in the change that first uses it.
 - Make sure a new check fails on a real instance of the mistake.
 - Delete the prose once a tool enforces it.

@@ -1,10 +1,10 @@
 ---
-name: standard-public-interface-changes
+name: standard-public-interfaces-grow-by-addition
 description: "Apply when a change adds to, renames, removes, or alters a surface that a program or author outside the codebase depends on, or you're judging whether such a change is compatible: a default, an exit code, an output field, an ordering, a fix to shipped behaviour. Add beside the old, keep the old working, and put a breaking or significant change in front of the reviewer as a written proposal."
 disable-model-invocation: true
 ---
 
-# Public Interface Changes
+# Public Interfaces Grow by Addition
 
 A public interface is any surface used from outside the codebase: a CLI, an HTTP API, an IPC channel, a file format, a document schema. You can't find or fix its callers from here.
 
@@ -28,4 +28,4 @@ A change is breaking if an existing caller can observe it without opting in. Cal
 ## Check
 
 - Would an existing script still work after this change?
-- Can you name an existing caller that would see a difference without changing anything? If so, the change is breaking.
+- Can you name an existing caller that would see a difference without changing anything? If so, the change is breaking, unless it restores documented behaviour.

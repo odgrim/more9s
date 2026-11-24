@@ -3,7 +3,7 @@
 Land the replacement as one stack of PRs, in this order. The stack is reviewed together and merged in order. A PR the reviewer rejects, or a removal waiting for approval, stays behind without blocking the PRs below it.
 
 1. The change that introduces the new way.
-2. The lint with its exemption list, as `checks-and-exemptions` describes.
+2. The lint with its exemption list, as `fix-the-code-not-the-check` describes.
 3. The feature that needed it, if there is one.
 4. The cleanup PRs.
 
@@ -11,7 +11,7 @@ If a script can convert every instance in one reviewable PR, that PR is the whol
 
 Land a design fix for a frozen workaround the same way.
 
-Give internal code no compatibility layer. Don't add an adapter, an alias, or a flag that selects the old path to keep old callers working. An old caller stays on the old way, on the exemption list, until it's migrated. A public surface is different, as `public-interface-changes` says.
+Give internal code no compatibility layer. Don't add an adapter, an alias, or a flag that selects the old path to keep old callers working. An old caller stays on the old way, on the exemption list, until it's migrated. A public surface is different, as `public-interfaces-grow-by-addition` says.
 
 #### How much cleanup the stack owes
 
