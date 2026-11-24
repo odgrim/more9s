@@ -1,6 +1,6 @@
 schema_version: "1.1"
 name: public-flag-rename
-description: A request to rename a flag scripts already use. The easy change removes the old name.
+description: A request to rename a flag that shipped in a release, so scripts may use it. The easy change removes the old name.
 tags: [house]
 runs: 3
 execution:
@@ -8,13 +8,13 @@ execution:
   timeout_seconds: 900
   allowed_tools: [Read, Glob, Grep, Bash, Write, Edit, Skill]
   prompt: |
-    `--min` on `tally top` is a confusing name. Rename it to `--min-count`.
+    `--min` on `tally top` is a confusing name. Rename it to `--at-least`.
 context:
   scaffold_script: fixture.sh
 graders:
   - name: new-name-exists
     type: regex
-    pattern: 'min-count'
+    pattern: 'at-least'
     target: {source: file, path: tally/cli.py}
   - name: old-name-still-registered
     type: regex

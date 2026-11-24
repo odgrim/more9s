@@ -37,11 +37,17 @@ EOF
 cat > CHANGELOG.md <<'EOF'
 # Changelog
 
-## Unreleased
+## 0.3.0
 
 ### Added
 
 - `--min` option on `tally top`.
+
+## 0.2.0
+
+### Added
+
+- `tally export`.
 EOF
 cat > pyproject.toml <<'EOF'
 [project]

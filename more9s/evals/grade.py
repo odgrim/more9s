@@ -391,21 +391,21 @@ def check_public_flag_rename(workspace, base, trace):
     def top(arguments, extra_env=None):
         return python(["-m", "tally", "top", "data/words.txt", *arguments], workspace, extra_env)
 
-    new_code, new_out, _ = top(["--min-count", "2"])
+    new_code, new_out, _ = top(["--at-least", "2"])
     old_code, old_out, old_err = top(["--min", "2"])
-    env_new = top([], {"TALLY_MIN_COUNT": "2"})
+    env_new = top([], {"TALLY_AT_LEAST": "2"})
     env_old = top([], {"TALLY_MIN": "2"})
     usage = (read(Path(workspace) / "docs/usage.md") or "").lower()
     changelog = (read(Path(workspace) / "CHANGELOG.md") or "").lower()
     expected = "red 4\nblue 2\ngreen 2\n"
     return {
-        "--min-count works": new_code == 0 and new_out == expected,
+        "--at-least works": new_code == 0 and new_out == expected,
         "--min still works": old_code == 0 and old_out == expected,
-        "--min warns on stderr and names --min-count": old_code == 0 and "--min-count" in old_err,
-        "TALLY_MIN_COUNT works": env_new[0] == 0 and env_new[1] == expected,
+        "--min warns on stderr and names --at-least": old_code == 0 and "--at-least" in old_err,
+        "TALLY_AT_LEAST works": env_new[0] == 0 and env_new[1] == expected,
         "TALLY_MIN still works": env_old[0] == 0 and env_old[1] == expected,
-        "docs mark the old name deprecated": "--min-count" in usage and "deprecat" in usage,
-        "CHANGELOG.md has a line": "min-count" in changelog,
+        "docs mark the old name deprecated": "--at-least" in usage and "deprecat" in usage,
+        "CHANGELOG.md has a line": "at-least" in changelog,
     }
 
 

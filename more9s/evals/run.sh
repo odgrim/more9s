@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Run the eval suite in three arms, then run the hidden checks over all of them.
+# Run the eval suite in three arms at once, then run the hidden checks over all of them.
 #
 #   evals/run.sh [RESULT_PREFIX] [extra `claude plugin eval` arguments, such as --tag house]
 #
@@ -59,10 +59,14 @@ PY
 graded=()
 for arm in full router none; do
   build_arm "$arm"
-  (cd "$variants/$arm" && claude plugin eval . --ablation none --scaffold --trust-plugin --no-publish \
-    --keep-temp -j 6 --allow-tools Bash Write Edit --json "$prefix.$arm.json" "$@") || true
   graded+=("$arm=$prefix.$arm.json")
 done
+# The arms run at the same time. Each writes its own result file and log.
+for arm in full router none; do
+  (cd "$variants/$arm" && claude plugin eval . --ablation none --scaffold --trust-plugin --no-publish \
+    --keep-temp -j 6 --allow-tools Bash Write Edit --json "$prefix.$arm.json" "$@" > "$prefix.$arm.log" 2>&1) || true &
+done
+wait
 
 cd "$plugin_root"
 python3 evals/grade.py "${graded[@]}" --markdown "$prefix.md" --json "$prefix.checks.json"
