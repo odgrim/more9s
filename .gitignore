@@ -16,3 +16,4 @@ __pycache__/
 # Eval runs
 more9s/evals/results/
 more9s/.eval-variants/
+out/
