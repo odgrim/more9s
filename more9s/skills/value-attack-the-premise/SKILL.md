@@ -1,12 +1,12 @@
 ---
 name: value-attack-the-premise
-description: "Apply when two or more fixes that share one premise have failed the same gate. Write the premise down and test it directly before you write another fix that assumes it."
+description: "Apply when two or more fixes that share one premise have failed the same check. Write the premise down and test it directly before you write another fix that assumes it."
 disable-model-invocation: true
 ---
 
 # Attack the Premise
 
-When two or more fixes that share one premise have failed the same gate, suspect the premise, not the fixes.
+When two or more fixes that share one premise have failed the same check, suspect the premise, not the fixes.
 
 - Write the premise down: the one sentence every failed fix assumed.
 - Test it before the next fix. Find an observation that would come out differently if the premise were false, and make it. Look at how the failures are distributed, not only at how large they are.

@@ -14,7 +14,7 @@ The reviewer can reject any decision in a PR. Asking first just adds a round tri
 - Put a decision the reviewer might reject in its own commit or PR, so rejecting it keeps the rest.
 - If rejecting a decision would throw away most of the work, open it first as a proposal PR. `requirements-reshape-the-design` and `public-interfaces-grow-by-addition` say when.
 - Size each PR by `one-kind-per-pr`. A PR too big to read gets no real review.
-- If no reviewed PR will carry the work, leave it in the working tree or on a local branch. Don't commit to the default branch or push unless asked.
+- If no reviewed PR will carry the work, put it on a local branch, one commit per unit as `commits-prove-the-work` says. Don't commit to the default branch or push unless asked.
 
 The [after the PR opens](../make-more9s/playbooks/after-the-pr-opens.md) playbook covers review comments and CI.
 

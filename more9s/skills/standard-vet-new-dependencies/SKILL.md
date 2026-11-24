@@ -10,11 +10,12 @@ A package name you recall from memory can be wrong, abandoned, or squatted, and 
 
 - Try the standard library and the repo's existing dependencies first.
 - Look the package up. Confirm it's the canonical one, with a registry page that points to the source repo you expect. A name you didn't look up is a guess.
-- Check that its licence fits the repo's and that it's maintained: a recent release, and issues that get answers.
+- Check that its licence fits the repo's and that it's maintained: releases within the last year, and issues that get answers.
+- Take a version that has been out at least a week, unless it fixes a vulnerability the repo is exposed to. A release from yesterday hasn't been looked at by anyone.
 - For an upgrade, read the changelog between the two versions and list each breaking change in the report's decisions.
 - Pin it through the repo's lockfile.
 - Give it its own commit, and say in the report's decisions what it replaces and what you rejected.
-- Installing one the repo doesn't already declare is an ask-first action.
+- Installing a package, or a version of one, that the lockfile doesn't already hold is an ask-first action. A new version runs new scripts.
 
 ## Check
 
