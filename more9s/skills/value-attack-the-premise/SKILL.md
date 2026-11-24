@@ -1,18 +1,18 @@
 ---
 name: value-attack-the-premise
-description: "Apply when two or more fixes that rest on the same assumption have failed the same check. Write the assumption down and test it directly before writing a third fix."
+description: "Apply when two or more fixes that share one premise have failed the same gate. Write the premise down and test it directly before you write another fix that assumes it."
 disable-model-invocation: true
 ---
 
 # Attack the Premise
 
-When two fixes built on one assumption fail the same check, the assumption is the likely fault. A third fix on the same assumption will fail the same way.
+When two or more fixes that share one premise have failed the same gate, suspect the premise, not the fixes.
 
-- Stop writing fixes. Write the premise in one sentence: what every failed fix took to be true.
-- Find an observation that would come out differently if the premise were false, and make it.
-- Look at which cases fail, not only how many. A premise that is true predicts the pattern of failures as well as their count.
-- If the evidence contradicts the premise, revert the fixes it motivated and start from what the failures have in common.
-- Report the premise, the test, and the result, including when the premise held.
+- Write the premise down: the one sentence every failed fix assumed.
+- Test it before the next fix. Find an observation that would come out differently if the premise were false, and make it. Look at how the failures are distributed, not only at how large they are.
+- If the evidence contradicts the premise, look for what the failures share that it did not predict. If one part always lands on the losing side, change what puts it there instead of adding a mechanism that cleans up after it.
+
+Do not start the next fix before the premise is written down and tested.
 
 ## Check
 

@@ -24,6 +24,8 @@
   {"name": "data file is skipped", "path": "a.json", "text": "\"// TODO fix\"", "want": []},
   {"name": "new snapshot file", "path": "t/__snapshots__/a.txt", "text": "", "created": true, "want": ["snapshot"]},
   {"name": "new golden file", "path": "t/out.golden", "text": "", "created": true, "want": ["snapshot"]},
+  {"name": "new golden file in a characterization directory", "path": "t/characterization/out.golden", "text": "", "created": true, "want": []},
+  {"name": "new snapshot file beside a characterization-named file", "path": "t/characterization_out.golden", "text": "", "created": true, "want": ["snapshot"]},
   {"name": "new vague file name", "path": "pkg/utils.py", "text": "", "created": true, "want": ["says nothing"]},
   {"name": "existing vague file name", "path": "pkg/utils.py", "text": "x = 1", "want": []}
 ]

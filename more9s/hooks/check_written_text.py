@@ -15,6 +15,7 @@ PROSE_SUFFIXES = (".md", ".mdx", ".txt", ".rst")
 DATA_SUFFIXES = (".json", ".lock", ".csv", ".tsv")
 SNAPSHOT_SUFFIXES = (".snap", ".golden")
 SNAPSHOT_DIRECTORY = "__snapshots__"
+CHARACTERIZATION_DIRECTORY = "characterization"
 VAGUE_NAMES = ("util", "utils", "common", "helper", "helpers", "manager", "misc")
 
 COMMENT_START = r"(?:#|//|/\*|--|<!--)"
@@ -93,10 +94,12 @@ def line_problems(path, text):
 def path_problems(path):
     pure = PurePath(path)
     found = []
-    if pure.suffix.lower() in SNAPSHOT_SUFFIXES or SNAPSHOT_DIRECTORY in pure.parts:
+    is_snapshot = pure.suffix.lower() in SNAPSHOT_SUFFIXES or SNAPSHOT_DIRECTORY in pure.parts
+    if is_snapshot and CHARACTERIZATION_DIRECTORY not in pure.parts:
         found.append(
             f"{path}: new golden or snapshot file. Assert the values the "
-            "requirement names, and validate machine output against its schema."
+            "requirement names, and validate machine output against its schema. "
+            f"Refactor scaffolding goes in a {CHARACTERIZATION_DIRECTORY} directory."
         )
     if pure.stem.lower() in VAGUE_NAMES:
         found.append(f"{path}: the file name says nothing. Name it for the one thing it holds.")

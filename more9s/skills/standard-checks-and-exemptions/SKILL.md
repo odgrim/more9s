@@ -1,40 +1,22 @@
 ---
 name: standard-checks-and-exemptions
-description: "Apply when writing or changing a lint or CI check, adding a suppression or skip, keeping an exemption list, or freezing a workaround or old pattern so it cannot spread. The check's message names the fix, and every exemption lives where it can be found."
+description: "Apply when you're writing a lint or CI check, a check fails and loosening it would make it pass, or you're adding a suppression, skip, or exemption. Fix the code, not the check, and keep every exemption where it can be found."
 disable-model-invocation: true
 ---
 
 # Checks and Exemptions
 
-A failing check is read by someone who did not write it, and an exemption is a debt someone has to be able to find.
+Someone who didn't write a check will read its failure, and someone has to be able to find every exemption.
 
-## Messages
+- Fix the code. A suppression, a skip, a new exemption, a raised threshold, or a narrowed scope loosens the check. If the check itself is wrong, fix it in its own change.
+- Make a check's message name the replacement and say what to change.
+- On a suppression, name the specific check and give the reason on the same line. The more9s hook flags one that does neither.
+- Any loosening you add is the reviewer's decision. List it in the report's decisions with the fix you didn't make and why.
+- If existing code fails a new lint, land the lint with a list that exempts each instance by name. The list only shrinks, and no exemption lives inline.
+- Have each CI step call a script that also runs locally.
 
-- The check's message names the replacement and says what to change.
-- For a frozen workaround with no replacement yet, it says the pattern is frozen, names the exemption list, and links the tracking issue once one exists.
-
-## Suppressions
-
-- A suppression names the specific check and gives its reason on the same line. A hook rejects one that does neither.
-- A suppression, skipped or disabled test, or exemption entry you add so a check passes is a decision for the reviewer. List each one at the top of the PR description with the fix you did not make and why. Never add one silently.
-- A lint that keeps an exemption list takes its exemptions from the list, not from inline suppressions.
-
-## Exemption lists
-
-- A new lint that existing code fails lands with an exemption list. Each existing instance is exempted by name.
-- The list shrinks. CI fails a change that adds an entry, unless it renames or moves an existing one.
-- An entry the reviewer approves passes through an override the repo defines, such as a label or a sign-off. Only the reviewer applies it. Where the repo defines none, the failing ratchet is the request for a ruling, and the top of the PR description says so.
-- A list that freezes a workaround takes no new entries, approved or not. A task that needs the workaround again fixes the design, as patterns-spread says.
-- A change that edits the exempted construct itself migrates it and removes it from the list, in an earlier PR of the same stack when the migration is larger than the change. An edit elsewhere in the same file leaves the entry alone. Untouched instances wait for the cleanup PRs. The replace-a-pattern playbook says how many of those a stack owes.
-- An old public name stays on the list until a human approves its removal. The list for an internal pattern reaches empty.
-
-## Freezing a workaround
-
-- A lint fails on new instances, with the existing ones exempted by name.
-- The exemption list is the record of the debt. A TODO at each site names the lint rule that freezes it, written `TODO(lint:<rule>)`, so a reader finds the list from the site.
-- Creating an issue takes effect outside the PR. When none exists, put the issue text in the PR description for the reviewer to file. Add the issue link to the lint's message once it exists.
+The [replace a pattern](../make-more9s/playbooks/replace-a-pattern.md) playbook covers keeping an exemption list and freezing a workaround.
 
 ## Check
 
-- Does the message alone tell the author what to write?
-- Is every exemption in the list, with none inline?
+- Did you leave every existing check as strict as you found it, or name each loosening in the report's decisions?

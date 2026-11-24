@@ -1,23 +1,20 @@
 ---
 name: value-simplest-thing-that-works
-description: "Apply when sizing a change, or when tempted to add an abstraction, option, layer, or dependency. Write the simplest code that solves the actual problem and respects the type system."
+description: "Apply when you're sizing a change, or tempted to add an abstraction, option, layer, or dependency. Write the simplest code that solves the actual problem and respects the type system."
 disable-model-invocation: true
 ---
 
 # Simplest Thing That Works
 
-Write the simplest code that solves the problem in front of you and respects the type system. Every extra part is something the next reader has to understand and the next change has to keep working. A type that type-system-discipline requires stays.
+Every extra part is one more thing the next reader has to understand and the next change has to keep working.
 
-- Search for an existing function before writing one.
-- Use the standard library and the repo's existing dependencies. A new dependency is a decision for the reviewer. secrets-and-untrusted-input says how one is checked and landed.
-- Delete the dead code and obsolete paths your change touches or replaces before building on them.
-- Leave code the task does not touch alone. Cleanup you notice goes in a separate change. The same fault inside the module a bug fix touches is part of the fix, as fix-root-causes says.
-- A requirement that does not fit the design is handled as patterns-spread says: one local special case, then a reshape. The reshape is in scope.
-- experience-first chooses what the user meets. This leaf then picks the simplest code that delivers it.
-
-code-organization says when an interface, option, or wrapper earns its place.
+- Search for an existing function before you write one.
+- A new dependency is an extra part. `vet-new-dependencies` says what comes first.
+- Before you build on dead code or an obsolete path your change touches or replaces, delete it.
+- Leave code the task doesn't touch alone. Name any cleanup you notice in the report's gaps, and do it when asked, as a separate change.
+- Never simplify away what a standard requires. A type that rules out an illegal state stays.
 
 ## Check
 
-- For each parameter, branch, and type this change added: does the contract or a standard require it? If not, delete it. Passing tests do not show that existing code is unneeded.
+- For each parameter, branch, and type you added: does the contract or a standard require it? If not, delete it. Passing tests don't show that existing code is unneeded.
 - Does every hunk in the diff serve the task?

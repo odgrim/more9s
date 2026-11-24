@@ -6,16 +6,13 @@ disable-model-invocation: true
 
 # Separate Shared State
 
-Two writers on one target need coordination, and coordination is where the bugs are. Remove the sharing before adding a lock.
+Two writers on one target need coordination, and coordination is where the bugs are.
 
-## Rules
-
-- Before sharing state between actors, ask what happens when another actor changes it mid-operation. If the answer is not "nothing", separate.
-- Give each actor its own file, key, branch, worktree, or directory. Combine the results where they are read.
+- Before you share state between actors, ask what happens if another actor changes it mid-operation. If the answer isn't "nothing", separate them.
+- Give each actor its own file, key, branch, worktree, or directory. Combine the results where they're read.
 - Two actors writing different fields of one file still share the file.
 - Share one write target only when the requirement is a single shared value: a counter, a ledger, a lease.
-- Then enforce access with a mechanism: one writer, sequential phases, a lock with stale detection, or compare-and-swap. A comment or an instruction to an agent is not a mechanism.
-- The mechanism's primitive lives in one module, as confine-sharp-tools requires.
+- Then enforce access with a mechanism: one writer, sequential phases, a lock with stale detection, or compare-and-swap. A comment or an instruction to an agent isn't a mechanism. Keep the mechanism's primitive in one module.
 
 ## Check
 
