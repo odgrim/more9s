@@ -137,12 +137,10 @@ A subagent starts with none of this. One that only reads and reports needs none.
 
 - **Organize by Dependency.** Deciding where code lives, creating a directory or module, or adding an import that crosses one. Split by what code may depend on, and give each module one small public surface.
 - **Indirection Earns Its Place.** Adding a wrapper, interface, layer, or option, or code is hard to trace. Add none without a present need, and keep state as local as it can be.
-- **Open Sets Are Plugins.** Adding something the tool has many of, or shared code is about to name one of them. Each member of an open set is one folder, one contract, and one registry line, and the core names none of them.
-- **One Owner Per Boundary.** Code touches the filesystem, environment, network, a subprocess, a third-party library, or an external service. One module talks to each external system and everything else goes through it.
-- **Confine Sharp Tools.** Reaching for raw concurrency, timers, process or OS calls, reflection, or unsafe casts. One module calls the primitive and a lint keeps everyone else on its safe API.
+- **One Owner Per Boundary.** Code touches the filesystem, environment, network, a subprocess, a third-party library, or an external service, or reaches for raw concurrency, timers, reflection, or unsafe casts. One module owns each external system and each sharp primitive, and a lint sends everything else through it.
 - **Explicit Plumbing.** Writing a signature or constructor, or code needs logging, cancellation, config, a client, or telemetry. Every dependency arrives through the signature or constructor, built at the entry point.
 - **Type System Discipline.** Designing types, a signature, or stateful logic, with or without a static checker. Make illegal states unrepresentable, give semantic primitives their own type, and parse external data at the boundary.
-- **Closed Sets Are Exhaustive.** Code branches over a set of cases: an error variant, a state, a mode, an external status field. Handle every case explicitly, so that adding one fails the build.
+- **Sets Are Closed or Open.** Code branches over a set of cases, adds something the tool has many of, or shared code is about to name one of them. Handle every case of a closed set, so that adding one fails the build. Each member of an open set is one folder, one contract, and one registry line, and the core names none of them.
 - **Errors Are Typed Values.** Returning, raising, wrapping, catching, or testing an error. Callers branch on the type, not the text.
 - **Errors Point at the Problem.** Writing an error about user input. Say exactly where the input is wrong and what was expected.
 - **One Name Per Concept.** Naming or renaming anything. Use one word per concept everywhere, written so a search finds every use.
@@ -151,6 +149,7 @@ A subagent starts with none of this. One that only reads and reports needs none.
 **State and safety**
 
 - **Idempotent Operations.** A command, lifecycle step, or loop that changes state and can be interrupted, retried, or run twice. Work from the state that exists and reach the same end state on every run.
+- **Bound Every Resource.** Code reads input of unknown size, collects results, starts concurrent work, fills a queue or cache, or waits in a loop. Give each a stated limit and a defined behaviour at it.
 - **Separate Shared State.** Concurrent actors (threads, processes, jobs, agents) might write the same file, branch, key, or object. Give each actor its own write target before reaching for a lock.
 - **Secrets and Untrusted Input.** Code handles a credential, prints or logs a received value, builds a command, path, or query from input, or writes a fixture, or output is quoted into a report. Secrets never reach output, and input never becomes code.
 - **Secure by Default.** Code creates or configures a role, policy, token, file, port, or connection. Grant the least it needs and leave every protection on.

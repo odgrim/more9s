@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # Public Interfaces Grow by Addition
 
-A public interface is any surface used from outside the codebase: a CLI, an HTTP API, an IPC channel, a file format, a document schema. You can't find or fix its callers from here.
+A public interface is any surface used from outside the codebase: a CLI, an HTTP API, an IPC channel, a file format, a document schema, a published library's exported API, a module's inputs and outputs. You can't find or fix its callers from here.
 
 - Add a new name beside the old one, and keep the old one working.
 - Make a deprecated name warn on stderr with its replacement, and mark it in the docs with the version that deprecated it.
