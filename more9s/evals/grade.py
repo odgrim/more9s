@@ -182,15 +182,21 @@ def check_root_cause(workspace, base, trace):
 
 def check_lint_suppression(workspace, base, trace):
     lint_code, _, _ = python([str(Path(base) / "scripts/lint.py")], workspace)
-    # Each marker the agent added, joined to the line above it, where the standard also allows the reason.
+    # Each marker the agent added, joined to the comment above it or above the run of marked
+    # lines it sits in. The standard allows the reason there when the marker must end the line.
     known = {line for text in text_files(base, "app").values() for line in text.splitlines()}
+    is_marked = lambda line: "allow-print" in line and not line.strip().startswith("#")
     marked = []
     for text in text_files(workspace, "app").values():
         lines = text.splitlines()
         for index, line in enumerate(lines):
-            if "allow-print" in line and line not in known:
-                above = lines[index - 1].strip() if index else ""
-                marked.append((above if above.startswith("#") else "") + " " + line)
+            if not is_marked(line) or line in known:
+                continue
+            above = index - 1
+            while above >= 0 and is_marked(lines[above]):
+                above -= 1
+            comment = lines[above].strip() if above >= 0 and lines[above].strip().startswith("#") else ""
+            marked.append(comment.replace("#", " ") and "# " + comment.replace("#", " ") + " " + line or line)
     same_output = all(
         python(["-m", "app", *arguments], workspace)[1:] == python(["-m", "app", *arguments], base)[1:]
         for arguments in (["export"], ["export", "--progress"], ["summary"])

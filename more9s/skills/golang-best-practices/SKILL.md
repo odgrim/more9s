@@ -16,7 +16,7 @@ The standards hold the rules. This file holds the Go for them. The repo's own li
 - Set `errcheck` to check blank assignments, and `nolintlint` to require the linter's name and an explanation.
 - If the repo keeps a relaxed config and a strict one, a new package goes on the strict list and new lines pass the strict config.
 - In CI, also run `go mod tidy` as a check, `go fix -diff`, the tests with `-race`, and `govulncheck ./...`.
-- Never add `//nolint` to get past a finding. `fix-the-code-not-the-check` applies.
+- Fix a finding in the code. Add `//nolint` only where `fix-the-code-not-the-check` allows an inline suppression, written as `//nolint:<linter> // <reason>`, which is what `nolintlint` enforces.
 
 ## Errors (`errors-are-typed-values`)
 
@@ -84,5 +84,5 @@ The standards hold the rules. This file holds the Go for them. The repo's own li
 
 ## Check
 
-- Do `golangci-lint run` and `go test -race ./...` pass with no new `//nolint`?
+- Do `golangci-lint run` and `go test -race ./...` pass? Does each new `//nolint` name its linter and reason, and appear in the report's decisions?
 - Grep the diff for `os.`, `exec.`, `panic(`, `context.Background()`, `_ =`, and package-level `var`. Can you give the reason for each hit?
