@@ -100,6 +100,10 @@ Each leaf ends in a Check. For each leaf you read, run the checks a command can 
 
 A subagent starts with none of this. One that only reads and reports needs none. If it writes code, tests, or prose, make the first line of its brief the absolute path of this file and the instruction to read it and the leaves its task triggers. Put the goal next. You own what it returns. Read its diff and run its checks before the report cites them.
 
+## Languages
+
+For Go, Rust, or TypeScript work, also read `../<language>-best-practices/SKILL.md`, where the language is `golang`, `rust`, or `typescript`. It says how to meet the standards in that language.
+
 ## Values
 
 **Before and while building**
@@ -174,4 +178,4 @@ A subagent starts with none of this. One that only reads and reports needs none.
 
 Open the steps at `playbooks/<title>.md`, with the title in kebab case.
 
-Contract-first change, Replace a pattern, Migrate to plugins, Open a PR, After the PR opens.
+Contract-first change, Replace a pattern, Migrate to plugins, Open a PR, After the PR opens, Maintain a stack, Unattended run.

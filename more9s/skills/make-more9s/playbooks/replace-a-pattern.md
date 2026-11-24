@@ -1,6 +1,6 @@
 ### Replace a pattern
 
-Land the replacement as one stack of PRs, in this order. The stack is reviewed together and merged in order. A PR the reviewer rejects, or a removal waiting for approval, stays behind without blocking the PRs below it.
+Land the replacement as one stack of PRs, in this order. The stack is reviewed together and merged in order. A PR the reviewer rejects, or a removal waiting for approval, stays behind without blocking the PRs below it. The [maintain a stack](./maintain-a-stack.md) playbook covers what happens to the PRs above it, and keeping the stack current while it's reviewed.
 
 1. The change that introduces the new way.
 2. The lint with its exemption list, as `fix-the-code-not-the-check` describes.

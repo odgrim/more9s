@@ -17,7 +17,7 @@ A fourth attempt is rarely better informed than the third. It costs context and 
 - Report what you tried, the evidence from each attempt, what that rules out, and the next observation that would decide it.
 - Stopping isn't asking. Deliver everything that works and put the failed part in the report's gaps.
 - Never get past the limit by loosening the check, special-casing the test input, or narrowing the claim without saying so.
-- The human can lift the limit by saying so, as in an unattended run. Then change the approach on each further attempt and list every one in the report.
+- The human can lift the limit by saying so, as in an unattended run. Then change the approach on each further attempt and list every one in the report. The [unattended run](../make-more9s/playbooks/unattended-run.md) playbook gives the loop.
 
 ## Check
 

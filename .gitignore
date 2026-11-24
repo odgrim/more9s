@@ -12,3 +12,6 @@ __pycache__/
 
 # Local agent settings
 .claude/settings.local.json
+
+# Eval runs
+more9s/evals/results/
