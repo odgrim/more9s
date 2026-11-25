@@ -9,8 +9,12 @@
 # RESULT_PREFIX.<model>.<arm>.json and RESULT_PREFIX.<model>.md. Don't pass --model
 # as an extra argument. Set the variable.
 #
+# The LLM graders run on MORE9S_EVAL_JUDGE, which defaults to sonnet. The eval command's
+# own default, haiku, failed replies that plainly met a grader's criteria.
+#
 # The arms:
-#   full    the whole plugin, with /more9s:make-more9s as the first line of every prompt
+#   full    the whole plugin, with /more9s:make-more9s as the first line of every prompt,
+#           or the case's own command where it tests one (the review-pr cases)
 #   router  the router and its playbooks and the hook, with no leaves and no other skills
 #   none    an empty plugin, and the prompt as a user would type it
 # Each arm is a copy of the plugin under .eval-variants/, run on its own with no
@@ -32,6 +36,7 @@ prefix="${1:-$plugin_root/evals/results/latest}"
 prefix="${prefix%.json}"
 shift || true
 read -r -a models <<< "${MORE9S_EVAL_MODELS:-sonnet opus}"
+judge="${MORE9S_EVAL_JUDGE:-sonnet}"
 for argument in "$@"; do
   if [ "$argument" = "--model" ]; then
     echo "run.sh: set MORE9S_EVAL_MODELS instead of passing --model" >&2
@@ -61,13 +66,16 @@ build_arm() {
     cp -R "$(dirname "$case_file")" "$target/evals/"
   done
   if [ "$arm" != "none" ]; then
-    python3 - "$target/evals" <<'PY'
+    python3 - "$target/evals" "$arm" <<'PY'
 import sys
 from pathlib import Path
+# A case that tests a command starts with that command in the arm that has it.
+OWN_COMMAND = {"review-pr": "/more9s:review-pr", "review-pr-standards": "/more9s:review-pr"}
 for path in Path(sys.argv[1]).glob("*/case.yaml"):
     text = path.read_text()
     assert text.count("  prompt: |\n") == 1, path
-    path.write_text(text.replace("  prompt: |\n", "  prompt: |\n    /more9s:make-more9s\n\n"))
+    command = OWN_COMMAND.get(path.parent.name) if sys.argv[2] == "full" else None
+    path.write_text(text.replace("  prompt: |\n", f"  prompt: |\n    {command or '/more9s:make-more9s'}\n\n"))
 PY
   fi
 }
@@ -85,7 +93,7 @@ for model in "${models[@]}"; do
   for arm in full router none; do
     graded+=("$arm=$prefix.$model.$arm.json")
     (cd "$variants/$arm" && claude plugin eval . --ablation none --scaffold --trust-plugin --no-publish \
-      --keep-temp -j 6 --allow-tools Bash Write Edit --model "$model" \
+      --keep-temp -j 6 --allow-tools Bash Write Edit --model "$model" --judge-model "$judge" \
       --json "$prefix.$model.$arm.json" "$@" > "$prefix.$model.$arm.log" 2>&1) || true &
   done
   wait

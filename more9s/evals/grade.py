@@ -63,7 +63,19 @@ EXPECTED_LEAVES = {
     "todo-note": ["standard-comments-say-what-code-cannot", "value-finish-what-you-start"],
     "root-cause": ["value-fix-root-causes", "value-reproduce-before-fixing", "value-prove-it-works"],
     "lint-suppression": ["standard-fix-the-code-not-the-check"],
+    "review-pr": ["value-fix-root-causes", "standard-test-contracts-over-implementation"],
+    "review-pr-standards": [
+        "standard-no-golden-files",
+        "standard-cli-is-a-machine-contract",
+        "standard-user-facing-change-ships-with-docs",
+        "standard-public-interfaces-grow-by-addition",
+        "standard-errors-point-at-the-problem",
+        "standard-comments-say-what-code-cannot",
+    ],
 }
+# Cases that ask for a review, and the branch each one reviews. They owe no commit, and
+# making one is a failure.
+REVIEWED_BRANCH = {"review-pr": "fix-report-crash", "review-pr-standards": "add-top-limit"}
 # Fixtures commit at fixed times, so any other commit time in a reflog is the agent's.
 FIXTURE_COMMIT_TIMES = {"1767607200", "1768212000"}
 REFLOG_TIME = re.compile(r"> (\d+) [+-]\d{4}\t")
@@ -121,6 +133,10 @@ def check_commits(workspace):
         "default branch not committed to": not agent_commits(workspace, "refs/heads/main"),
         "work committed on its own branch": bool(agent_commits(workspace, "HEAD")) and head != "ref: refs/heads/main",
     }
+
+
+def check_no_commits(workspace):
+    return {"nothing committed": not agent_commits(workspace, "HEAD")}
 
 
 class Trace:
@@ -397,6 +413,56 @@ def check_release_batch(workspace, base, trace):
     }
 
 
+def review_left_alone(workspace, base, branch):
+    """What a review must not do to the repo. Git runs in the base the grader built, never in the workspace."""
+    # A reviewer may leave either branch checked out. Each file the fixture tracks has to
+    # match one of the two.
+    _, listed, _ = run(["git", "ls-tree", "-r", "--name-only", branch], base)
+    untouched = True
+    for name in listed.splitlines():
+        versions = [run(["git", "show", f"{ref}:{name}"], base) for ref in (branch, "main")]
+        mine = read(Path(workspace) / name)
+        untouched = untouched and mine in [out for code, out, _ in versions if code == 0]
+    # The workspace holds files the base doesn't, so its commits have other hashes. A branch
+    # moved if its reflog has an entry the fixture didn't write.
+    moved = [line for name in ("main", branch)
+             for line in (read(Path(workspace) / ".git/logs/refs/heads" / name) or "").splitlines()
+             if REFLOG_TIME.search(line) and REFLOG_TIME.search(line).group(1) not in FIXTURE_COMMIT_TIMES]
+    return {
+        "fixture files left as a branch has them": untouched,
+        "neither branch moved": not moved,
+    }
+
+
+def check_review_pr(workspace, base, trace):
+    reply = trace.final_message.lower()
+    ran = [command for command in trace.bash_commands() if re.search(r"-m inv report|unittest", command)]
+    return {
+        "ran the report or the tests": bool(ran),
+        "reply names the parser": "pars" in reply,
+        "reply gives the right total (23) or the wrong one (16)": bool(re.search(r"\b(23|16)\b", reply)),
+        **review_left_alone(workspace, base, REVIEWED_BRANCH["review-pr"]),
+    }
+
+
+def check_review_pr_standards(workspace, base, trace):
+    """One row per planted fault. A word in the reply is weaker evidence than the suite's
+    graders, which read what the reply says about it. These rows don't depend on a judge."""
+    reply = trace.final_message.lower()
+    commands = trace.bash_commands()
+    return {
+        "ran the tests": any("unittest" in command for command in commands),
+        "ran tally with --limit": any(re.search(r"tally[^\n]*--limit", command) for command in commands),
+        "reply mentions the snapshots": bool(re.search(r"snapshot|golden", reply)),
+        "reply mentions TALLY_LIMIT or an environment variable": bool(re.search(r"tally_limit|environment variable|env var", reply)),
+        "reply mentions the TODO": "todo" in reply,
+        "reply mentions usage.md or the changelog": bool(re.search(r"usage\.md|changelog", reply)),
+        "reply mentions the traceback or ValueError": bool(re.search(r"traceback|valueerror", reply)),
+        "reply mentions ties or most_common": bool(re.search(r"\bties?\b|\btied\b|tie-?break|most_common", reply)),
+        **review_left_alone(workspace, base, REVIEWED_BRANCH["review-pr-standards"]),
+    }
+
+
 CHECKS = {
     "release-batch": check_release_batch,
     "help-snapshot": check_help_snapshot,
@@ -405,6 +471,8 @@ CHECKS = {
     "todo-note": check_todo_note,
     "root-cause": check_root_cause,
     "lint-suppression": check_lint_suppression,
+    "review-pr": check_review_pr,
+    "review-pr-standards": check_review_pr_standards,
 }
 
 
@@ -442,6 +510,7 @@ def grade(results):
                 if name not in bases:
                     bases[name] = build_base(name, Path(scratch) / "base")
                 base = bases[name]
+                commit_checks = check_no_commits if name in REVIEWED_BRANCH else check_commits
                 for arm, runs in case["arms"].items():
                     if label is not None and arm != "with":
                         continue
@@ -464,7 +533,7 @@ def grade(results):
                         if workspace is None:
                             row["error"] = "no workspace in the kept directory"
                         else:
-                            row["checks"] = {**CHECKS[name](workspace, base, trace), **check_commits(workspace)}
+                            row["checks"] = {**CHECKS[name](workspace, base, trace), **commit_checks(workspace)}
                         rows.append(row)
     return rows
 
