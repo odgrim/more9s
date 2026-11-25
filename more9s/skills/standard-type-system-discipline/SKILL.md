@@ -10,6 +10,7 @@ A state the type can't hold is a bug nobody has to test for.
 
 - Model variants as one type with distinct cases, not a bag of optional fields or booleans that have to agree. Model state that moves through phases the same way, with its transitions in one place.
 - If two arguments share a primitive type and mean different things, give each its own type, validated once at creation.
+- If two arguments have to agree, take one and derive the other inside.
 - Parse external data (JSON, RPC payloads, CLI args, config, environment variables, database rows) into a typed model at the boundary. Don't use a cast, unchecked assertion, or escape type on data that hasn't been validated.
 - If a schema file owns a shape, derive the type from it. A hand-written parallel one drifts.
 - Without a static checker, model the same way with the nearest construct (an enum, a frozen record, a tagged value) and validate once at the boundary.

@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # Patterns Spread
 
-Existing code isn't proof of the right way. The newest code is the most likely to be a copy.
+Existing code isn't proof of the right way. The newest code is the most likely to be a copy. Code an agent wrote is no precedent at all: justify the choice on its merits.
 
 - **A different style.** If the repo's way works and you'd have written it differently, use the repo's way and name the better one in the report. Introduce a new way only when asked. Do the same when the existing way breaks a standard.
 - **A replaced way.** If the repo already holds the replacement (a newer API, a lint message that names one, an exemption list, a deprecation note), use the replacement in new code.

@@ -51,6 +51,15 @@ The standards hold the rules. This file holds the Rust for them. The repo's own 
 - Own spawned tasks with a `JoinSet`, so dropping it stops them. Shut down with a cancellation token the tasks watch.
 - A public trait's `async fn` can't gain a `Send` bound later. Decide it at the first release.
 
+## Effects and child processes (`explicit-plumbing`, `one-owner-per-boundary`)
+
+- Ban the direct call outside its owner with `disallowed-methods` in `clippy.toml`: `std::env::var`, `std::env::set_current_dir`, `std::process::Command::new`, `std::time::SystemTime::now`.
+- Never call `set_current_dir`. Pass the path, and give a child its directory with `Command::current_dir`.
+- A child inherits the parent's environment. Set or remove every variable that changes what it does, such as `GIT_DIR`, and set `LC_ALL=C` when you parse its output.
+- Give a child `Stdio::null()` for stdin so it can't prompt, and a timeout that kills it if it can wait on the network. With tokio, set `kill_on_drop(true)` and wrap `wait` in `timeout`.
+- Keep a child's output and a path as bytes (`&[u8]`, `OsStr`, `Path`) until they must be text. `String::from_utf8` turns valid non-UTF-8 output into an error.
+- Bound recursion over input you don't control with a depth count. A stack overflow aborts the process and can't be caught.
+
 ## Unsafe (`one-owner-per-boundary`)
 
 - Keep `unsafe` in one small module whose public API is safe. Module privacy is the only thing that contains it.
@@ -61,7 +70,8 @@ The standards hold the rules. This file holds the Rust for them. The repo's own 
 
 - Features only add. Two that can't be on together need a `compile_error!`. Removing a feature, including from `default`, is a breaking change.
 - Put new code behind `pub(crate)` until something outside the crate needs it.
-- Before a release, run `cargo publish --dry-run` and a semver check. A published version can't be removed.
+- Before a release, run `cargo publish --dry-run` and `cargo semver-checks`. A published version can't be removed.
+- Never edit `Cargo.lock` by hand. Change it with `cargo add` or `cargo update -p`.
 
 ## Logging, CLI, docs
 
@@ -74,6 +84,9 @@ The standards hold the rules. This file holds the Rust for them. The repo's own 
 - Unit tests sit in `#[cfg(test)] mod tests` beside the code. Tests of the public API sit in `tests/`.
 - Keep `main.rs` thin over a `lib.rs`, so the logic can be tested.
 - No snapshot crate for assertions, as `no-golden-files` says.
+- Fuzz a parser or sanitiser of untrusted input with `cargo fuzz`, and give it empty, truncated, and non-UTF-8 cases.
+- Test code that can run concurrently by running it concurrently, with `std::thread::scope` or a `JoinSet`.
+- Take a limit or timeout as a parameter, so a test trips it with a small value and doesn't wait out the real one.
 
 ## Check
 

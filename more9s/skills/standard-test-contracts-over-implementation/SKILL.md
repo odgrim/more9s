@@ -17,6 +17,7 @@ Then:
 
 - Drive the code through its public interface with a concrete input. Take the expected value from the requirement, not from the code under test.
 - What an external service receives is behaviour. A call to an internal helper isn't.
+- Never assert on captured log output. If a log line is the only signal, expose a status field or a counter and assert on that.
 - Pair "this never happens" with a case where it does. Assert the error type callers branch on, not the message.
 - Make a test give the same result on every run. Pass in the clock, the random seed, and the ordering, and use a fake for the network.
 - Never delete, skip, or loosen a test that fails because behaviour broke. If one fails only because internals changed, rewrite it to assert the contract, or delete it if another test already does.

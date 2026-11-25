@@ -13,6 +13,7 @@ People read errors, logs, CI output, and fixtures, and systems that shouldn't ho
 - Read a secret from the environment or a secret store at the entry point. Never write one to a file in the repo, a command line, or a URL.
 - Put no real credential, account ID, or customer data in fixtures or recorded responses.
 - Treat input as data: subprocess arguments as a list, queries with parameters, paths resolved against an allowed root. If input selects code (a plugin name, a template, a module source), look it up in a registry or an allow-list.
+- Keep everything unpacked from an archive, a tarball, or a git tree under its destination. Reject an entry whose path escapes it, and never follow a symlink the source controls.
 - In the session, don't print the environment or open a credential file to debug. Redact output before you quote it into a report, a commit message, or an issue, and mark each redaction.
 
 ## Check
