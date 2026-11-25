@@ -4,6 +4,8 @@ Run this when something moves under a stack of PRs the session opened: a review 
 
 A stack is a chain. Each PR's base is the branch of the PR below it, and the bottom PR's base is the default branch.
 
+Each PR carries the label the [open a PR](./open-a-pr.md) playbook gives it: its position in the title and a line that links the first PR and the PR below. A merge leaves the positions as they are. When a PR is added, moved, or dropped, fix every title and line the change made wrong, along with the map.
+
 #### Which branches you may rewrite
 
 - A branch is yours if the session created it and nobody else has pushed to it. Anything else is shared, and force-pushing it is an ask-first action.
