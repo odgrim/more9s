@@ -36,7 +36,7 @@ To steer mid-task, name a rule: "apply fix root causes", or `/more9s:value-fix-r
 | Standards | 25 | `more9s/skills/standard-*/` |
 | Playbooks | 7 | `more9s/skills/make-more9s/playbooks/` |
 | Language skills | 3 | `golang-`, `rust-`, and `typescript-best-practices` |
-| Commands | 8 | see below |
+| Commands | 9 | see below |
 | Hook | 1 | `more9s/hooks/` |
 
 The index also sets what a task owes at each size, which actions wait for the human, the four-part report, and which rule wins when two disagree.
@@ -51,6 +51,7 @@ Short handles for things you'd otherwise type as a paragraph.
 | `/more9s:why` | Answers why code is the way it is, from commits, PRs, and issues |
 | `/more9s:what-breaks` | Finds what a change breaks outside its diff, and proves the fact its safety rests on |
 | `/more9s:review-pr` | Reviews a PR against the request behind it and the values and standards, and gives a verdict |
+| `/more9s:babysit` | Watches a PR's checks until they pass, and fixes each build failure at its cause |
 | `/more9s:catch-up` | Says what changed since your last message and lists what's waiting on you |
 | `/more9s:sharpen` | Rewrites a prompt to ask for what an expert would do |
 | `/more9s:audit-mistakes` | Finds mistakes the repo keeps repeating and makes each fail a check |

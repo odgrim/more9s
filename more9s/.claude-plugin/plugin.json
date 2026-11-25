@@ -1,6 +1,6 @@
 {
   "name": "more9s",
-  "version": "0.26.0",
+  "version": "0.27.0",
   "description": "Values and standards for agentic development, as small skills an agent reads when a task triggers them. /make-more9s indexes them and says how they rank. Also: playbooks for multi-step work, best-practice skills for Go, Rust and TypeScript, and short operator commands such as /wat, /why and /catch-up.",
   "author": {
     "name": "Brian Torres"
